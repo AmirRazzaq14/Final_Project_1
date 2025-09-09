@@ -14,6 +14,5 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello, Welcome to JavaFX!");
         stage.setScene(scene);
         stage.show();
-        //github 123
     }
 }
