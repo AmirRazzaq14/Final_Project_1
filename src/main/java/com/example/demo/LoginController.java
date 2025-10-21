@@ -10,19 +10,30 @@ public class LoginController {
     @FXML private PasswordField passwordField;
 
     @FXML
-    public void handleLogin() {
+    public void handleLogin(ActionEvent event) {
+
         String inputEmail = emailField.getText();
         String inputPassword = passwordField.getText();
+
+        /*For Debugging purposes
+       // System.out.println("Trying login for: " + inputEmail + " / " + inputPassword);
+       // System.out.println("Known users:");
+       // for (UserCred u : RegisterController.userList) {
+           // System.out.println(u.getEmail() + " (" + u.getPassword() + ")");
+        }
+        */
+
         boolean found = false;
         for (UserCred user : RegisterController.userList) {
-            if (user.getEmail().equals(inputEmail) && user.getPassword().equals(inputPassword)) {
+            if (user.getEmail() != null && user.getPassword() != null &&
+                    user.getEmail().equals(inputEmail) &&
+                    user.getPassword().equals(inputPassword)) {
                 found = true;
                 break;
             }
         }
         if (found) {
-            showAlert("Login successful!");
-
+            SceneSwitcher.switchScene(event, "/com/example/demo/home.fxml", "Home");
         } else {
             showAlert("Invalid email or password.");
         }
