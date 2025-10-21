@@ -22,7 +22,7 @@ public class LoginController {
         }
         if (found) {
             showAlert("Login successful!");
-            // Optionally: Switch to "home" or dashboard scene here
+
         } else {
             showAlert("Invalid email or password.");
         }

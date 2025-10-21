@@ -29,11 +29,11 @@ public class RegisterController {
             return;
         }
 
-        // add to array , saved in mem and not output
+        // List is saved in memory, not output anywhere
         UserCred user = new UserCred(first, last, email, pass);
         userList.add(user);
 
-        //swap to login
+        //prompts user to login after registering
         SceneSwitcher.switchScene(event, "login.fxml", "Login");
     }
 
