@@ -15,5 +15,7 @@
         <TextField fx:id="emailField" promptText="Email" />
         <PasswordField fx:id="passwordField" promptText="Password" />
         <Button text="Register" onAction="#handleRegister" />
+        <Button fx:id="backButton" text="Back" onAction="#handleBackButton" />
+
     </VBox>
 </AnchorPane>
