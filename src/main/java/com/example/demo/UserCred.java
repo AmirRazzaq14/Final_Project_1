@@ -1,20 +1,21 @@
 package com.example.demo;
 
 public class UserCred {
-    private String firstName;
-    private String lastName;
+
     private String email;
     private String password;
 
-    public UserCred(String firstName, String lastName, String email, String password){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public UserCred(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public String getFirstName() {return firstName;}
-    public String getLastName() {return lastName;}
-    public String getEmail() {return email;}
-    public String getPassword() {return password;}
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
+

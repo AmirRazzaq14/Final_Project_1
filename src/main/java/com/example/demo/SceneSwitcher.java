@@ -3,6 +3,7 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -11,11 +12,21 @@ public class SceneSwitcher {
 
     public static void switchScene(ActionEvent event, String fxmlPath, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneSwitcher.class.getResource(fxmlPath));
-            Scene scene = new Scene(loader.load());
+            Parent root = FXMLLoader.load(SceneSwitcher.class.getResource(fxmlPath));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle(title);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchScene(ActionEvent event, String fxmlPath) {
+        try {
+            Parent root = FXMLLoader.load(SceneSwitcher.class.getResource(fxmlPath));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
