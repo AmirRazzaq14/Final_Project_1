@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,11 @@ public class WorkoutHomeController {
 
     @FXML
     private void handleMaintain() { showWorkouts("Maintaining"); }
+
+    @FXML
+    private void handleSelectWorkouts(ActionEvent event) {
+        SceneSwitcher.switchScene(event, "/com/example/demo/workouts.fxml", "Select Workouts");
+    }
 
     private void showWorkouts(String goal) {
         workoutSection.setVisible(true);
@@ -56,4 +62,3 @@ public class WorkoutHomeController {
         }
     }
 }
-
