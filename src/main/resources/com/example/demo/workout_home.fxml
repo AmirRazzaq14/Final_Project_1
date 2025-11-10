@@ -6,101 +6,53 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane fx:controller="com.example.demo.WorkoutHomeController"
-            xmlns:fx="http://javafx.com/fxml" prefWidth="1000" prefHeight="700"
+            xmlns:fx="http://javafx.com/fxml"
+            prefWidth="1000" prefHeight="700"
             style="-fx-background-color: linear-gradient(to bottom, #5b6ef5, #a47ef5);">
 
     <!-- Title -->
     <Label text="What is your goal today?" layoutX="330" layoutY="50"
            style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: white;" />
 
-    <!-- Cards Container -->
-    <HBox layoutX="80" layoutY="120" spacing="60">
-        <!-- Cutting Card -->
-        <VBox alignment="CENTER" spacing="15"
-              style="-fx-background-color: rgba(255,255,255,0.15);
-                     -fx-background-radius: 25;
-                     -fx-padding: 30;
-                     -fx-pref-width: 250;
-                     -fx-pref-height: 300;">
-            <Label text="Cutting" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <Label text="Lose fat, stay strong."
-                   wrapText="true"
-                   style="-fx-font-size: 14px; -fx-text-fill: white; -fx-alignment: center;" />
-            <Button text="Select" onAction="#handleCutting"
-                    style="-fx-background-color: #80b3ff;
-                           -fx-background-radius: 25;
-                           -fx-text-fill: white;
-                           -fx-font-weight: bold;
-                           -fx-font-size: 14px;
-                           -fx-pref-width: 100;
-                           -fx-pref-height: 35;" />
-        </VBox>
+    <!-- Main Centered Content -->
+    <VBox alignment="CENTER" spacing="30"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="120">
 
-        <!-- Bulking Card -->
-        <VBox alignment="CENTER" spacing="15"
-              style="-fx-background-color: rgba(255,255,255,0.15);
-                     -fx-background-radius: 25;
-                     -fx-padding: 30;
-                     -fx-pref-width: 250;
-                     -fx-pref-height: 300;">
-            <Label text="Bulking" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <Label text="Build muscle mass."
-                   wrapText="true"
-                   style="-fx-font-size: 14px; -fx-text-fill: white; -fx-alignment: center;" />
-            <Button text="Select" onAction="#handleBulking"
-                    style="-fx-background-color: #80b3ff;
-                           -fx-background-radius: 25;
-                           -fx-text-fill: white;
-                           -fx-font-weight: bold;
-                           -fx-font-size: 14px;
-                           -fx-pref-width: 100;
-                           -fx-pref-height: 35;" />
-        </VBox>
+        <!-- Cards -->
+        <HBox alignment="CENTER" spacing="60">
+            <!-- Cutting Card -->
+            <VBox alignment="CENTER" spacing="15" style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 25; -fx-padding: 30; -fx-pref-width: 250; -fx-pref-height: 300;">
+                <Label text="Cutting" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Label text="Lose fat, stay strong." wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: white; -fx-alignment: center;" />
+                <Button text="Select" onAction="#handleCutting"
+                        style="-fx-background-color: #80b3ff; -fx-background-radius: 25; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 100; -fx-pref-height: 35;" />
+            </VBox>
+            <!-- Bulking Card -->
+            <VBox alignment="CENTER" spacing="15" style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 25; -fx-padding: 30; -fx-pref-width: 250; -fx-pref-height: 300;">
+                <Label text="Bulking" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Label text="Build muscle mass." wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: white; -fx-alignment: center;" />
+                <Button text="Select" onAction="#handleBulking"
+                        style="-fx-background-color: #80b3ff; -fx-background-radius: 25; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 100; -fx-pref-height: 35;" />
+            </VBox>
+            <!-- Maintaining Card -->
+            <VBox alignment="CENTER" spacing="15" style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 25; -fx-padding: 30; -fx-pref-width: 250; -fx-pref-height: 300;">
+                <Label text="Maintaining" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Label text="Stay balanced and healthy." wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: white; -fx-alignment: center;" />
+                <Button text="Select" onAction="#handleMaintain"
+                        style="-fx-background-color: #80b3ff; -fx-background-radius: 25; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 100; -fx-pref-height: 35;" />
+            </VBox>
+        </HBox>
 
-        <!-- Maintaining Card -->
-        <VBox alignment="CENTER" spacing="15"
-              style="-fx-background-color: rgba(255,255,255,0.15);
-                     -fx-background-radius: 25;
-                     -fx-padding: 30;
-                     -fx-pref-width: 250;
-                     -fx-pref-height: 300;">
-            <Label text="Maintaining" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <Label text="Stay balanced and healthy."
-                   wrapText="true"
-                   style="-fx-font-size: 14px; -fx-text-fill: white; -fx-alignment: center;" />
-            <Button text="Select" onAction="#handleMaintain"
-                    style="-fx-background-color: #80b3ff;
-                           -fx-background-radius: 25;
-                           -fx-text-fill: white;
-                           -fx-font-weight: bold;
-                           -fx-font-size: 14px;
-                           -fx-pref-width: 100;
-                           -fx-pref-height: 35;" />
-        </VBox>
+        <!-- Filter & Select Custom Workouts Button below cards, centered -->
+        <Button text="Filter &amp; Select Custom Workouts" onAction="#handleSelectWorkouts"
+                style="-fx-background-color: #a47ef5; -fx-background-radius: 25; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-pref-width: 350; -fx-pref-height: 40;" />
+    </VBox>
 
-        <!-- The new button, placed underneath the cards -->
-        <Button
-                text="Filter &amp; Select Custom Workouts"
-                layoutX="80"
-                layoutY="440"
-                style="-fx-background-color: #a47ef5;
-           -fx-background-radius: 25;
-           -fx-text-fill: white;
-           -fx-font-weight: bold;
-           -fx-font-size: 16px;
-           -fx-pref-width: 350;
-           -fx-pref-height: 40;"
-                onAction="#handleSelectWorkouts"
-        />
-
-        <!-- Workout Section -->
-        <VBox fx:id="workoutSection" layoutX="80" layoutY="480" spacing="15" visible="false">
-            <Label fx:id="workoutTitle" text="Today's Suggested Workouts"
-                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <VBox fx:id="workoutList" spacing="12"/>
-        </VBox>
-    </HBox>
-
-
+    <!-- Workout Section -->
+    <VBox fx:id="workoutSection" layoutX="80" layoutY="480" spacing="15" visible="false">
+        <Label fx:id="workoutTitle" text="Today's Suggested Workouts"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+        <VBox fx:id="workoutList" spacing="12"/>
+    </VBox>
 
 </AnchorPane>

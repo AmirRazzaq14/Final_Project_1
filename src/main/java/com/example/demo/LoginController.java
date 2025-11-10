@@ -15,14 +15,6 @@ public class LoginController {
         String inputEmail = emailField.getText();
         String inputPassword = passwordField.getText();
 
-        /*For Debugging purposes
-       // System.out.println("Trying login for: " + inputEmail + " / " + inputPassword);
-       // System.out.println("Known users:");
-       // for (UserCred u : RegisterController.userList) {
-           // System.out.println(u.getEmail() + " (" + u.getPassword() + ")");
-        }
-        */
-
         boolean found = false;
         for (UserCred user : RegisterController.userList) {
             if (user.getEmail() != null && user.getPassword() != null &&
