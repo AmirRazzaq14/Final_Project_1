@@ -11,13 +11,13 @@
             xmlns:fx="http://javafx.com/fxml" prefWidth="900" prefHeight="700"
             style="-fx-background-color: linear-gradient(to bottom, #5b6ef5, #a47ef5);">
 
-    <!-- Title -->
+
     <Label text="What is your goal today?" layoutX="300" layoutY="40"
            style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white;" />
 
-    <!-- Cards Container -->
+
     <HBox layoutX="60" layoutY="100" spacing="40">
-        <!-- Cutting Card -->
+
         <VBox alignment="CENTER" spacing="10"
               style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 20; -fx-padding: 20;">
             <ImageView fitHeight="180" fitWidth="150" pickOnBounds="true" preserveRatio="true"
@@ -27,7 +27,7 @@
             <Button text="Select" fx:id="cuttingBtn" onAction="#handleCutting" style="-fx-background-color: #80b3ff; -fx-background-radius: 20;" />
         </VBox>
 
-        <!-- Bulking Card -->
+
         <VBox alignment="CENTER" spacing="10"
               style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 20; -fx-padding: 20;">
             <ImageView fitHeight="180" fitWidth="150" pickOnBounds="true" preserveRatio="true"
@@ -37,7 +37,7 @@
             <Button text="Select" fx:id="bulkingBtn" onAction="#handleBulking" style="-fx-background-color: #80b3ff; -fx-background-radius: 20;" />
         </VBox>
 
-        <!-- Maintaining Card -->
+
         <VBox alignment="CENTER" spacing="10"
               style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 20; -fx-padding: 20;">
             <ImageView fitHeight="180" fitWidth="150" pickOnBounds="true" preserveRatio="true"
@@ -48,7 +48,7 @@
         </VBox>
     </HBox>
 
-    <!-- Workout Section -->
+
     <VBox fx:id="workoutSection" layoutX="60" layoutY="450" spacing="15" visible="false">
         <Label fx:id="workoutTitle" text="Today's Suggested Workouts"
                style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
