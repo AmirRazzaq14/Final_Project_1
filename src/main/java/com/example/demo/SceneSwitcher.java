@@ -22,14 +22,5 @@ public class SceneSwitcher {
         }
     }
 
-    public static void switchScene(ActionEvent event, String fxmlPath) {
-        try {
-            Parent root = FXMLLoader.load(SceneSwitcher.class.getResource(fxmlPath));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    
 }
