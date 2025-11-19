@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
@@ -147,5 +146,8 @@ public class WorkoutHomeController {
         return null;
     }
 
+    public void handleSelectWorkouts(ActionEvent event) {
+        SceneSwitcher.switchScene(event, "/com/example/demo/workouts.fxml", "Select Workouts");
+    }
 }
 
