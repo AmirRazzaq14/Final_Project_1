@@ -5,6 +5,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
 
+import static com.example.demo.SceneSwitcher.switchScene;
+
 public class LoginController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -24,14 +26,13 @@ public class LoginController {
                 break;
             }
         }
-        SceneSwitcher.switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
-
+        switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
 
     }
 
     @FXML
     public void handleShowRegister(ActionEvent event) {
-        SceneSwitcher.switchScene(event, "/com/example/demo/register.fxml", "Register - ShapeShift");
+        switchScene(event, "/com/example/demo/register.fxml", "Register - ShapeShift");
     }
 
     private void showAlert(String msg) {
