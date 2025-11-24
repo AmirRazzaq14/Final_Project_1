@@ -2,26 +2,27 @@ package com.example.demo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-
+import javafx.stage.Stage;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WorkoutSelectionController {
-
     private static final Map<String, List<String>> MUSCLE_GROUP_WORKOUTS = WorkoutFilterDropdown.MUSCLE_GROUP_WORKOUTS;
 
-    @FXML
-    private ComboBox<String> muscleGroupComboBox;
-    @FXML
-    private TextField workoutSearchField;
-    @FXML
-    private ListView<String> workoutListView;
-    @FXML
-    private ListView<String> myWorkoutsListView;
+    @FXML private ComboBox<String> muscleGroupComboBox;
+    @FXML private TextField workoutSearchField;
+    @FXML private ListView<String> workoutListView;
+    @FXML private ListView<String> myWorkoutsListView;
+    @FXML private Button startWorkoutButton;
 
-    private ObservableList<String> fullWorkoutList = FXCollections.observableArrayList(); // All filtered by muscle group
-    private ObservableList<String> searchFilteredList = FXCollections.observableArrayList(); // Filtered by search
+    private ObservableList<String> fullWorkoutList = FXCollections.observableArrayList();
+    private ObservableList<String> searchFilteredList = FXCollections.observableArrayList();
     private ObservableList<String> myWorkouts = FXCollections.observableArrayList();
 
     @FXML
@@ -32,16 +33,21 @@ public class WorkoutSelectionController {
         muscleGroupComboBox.setOnAction(e -> updateWorkouts());
 
         updateWorkouts();
+
         myWorkoutsListView.setItems(myWorkouts);
 
-
         workoutSearchField.textProperty().addListener((obs, oldVal, newVal) -> applySearchFilter(newVal));
+
+
+        startWorkoutButton.setDisable(myWorkouts.isEmpty());
+        myWorkouts.addListener((ListChangeListener<String>) c ->
+                startWorkoutButton.setDisable(myWorkouts.isEmpty())
+        );
     }
 
     private void updateWorkouts() {
         String selectedGroup = muscleGroupComboBox.getValue();
         fullWorkoutList.clear();
-
         if ("All".equals(selectedGroup)) {
             Set<String> all = new LinkedHashSet<>();
             for (List<String> wks : MUSCLE_GROUP_WORKOUTS.values()) {
@@ -85,5 +91,30 @@ public class WorkoutSelectionController {
     @FXML
     private void handleBackToHome(javafx.event.ActionEvent event) {
         SceneSwitcher.switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
+    }
+
+
+    @FXML
+    private void handleStartWorkout(javafx.event.ActionEvent event) {
+        List<Exercise> exercises = myWorkouts.stream()
+                // TODO: Replace with mapping to appropriate Exercise detail/image for each real exercise if needed
+                .map(name -> new Exercise(name, "10x", "/images/default.jpg"))
+                .collect(Collectors.toList());
+
+        Workout workout = new Workout("My Custom Plan", exercises);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/WorkoutPlayer.fxml"));
+            Parent root = loader.load();
+
+            WorkoutPlayerController controller = loader.getController();
+            controller.setWorkout(workout);
+
+            Stage stage = (Stage) startWorkoutButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

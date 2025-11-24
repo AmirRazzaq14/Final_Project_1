@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
 
-
-<?import javafx.scene.image.ImageView?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo.WorkoutPlayerController"
-
             prefWidth="430" prefHeight="800" style="-fx-background-color: #1b1b1b;">
 
-<VBox spacing="20" alignment="CENTER" layoutY="40" prefWidth="430">
-    <!-- Exercise Title -->
-    <Label fx:id="exerciseName" style="-fx-text-fill: white; -fx-font-size: 26px; -fx-font-weight: bold;" />
 
-    <!-- Exercise Image -->
-    <ImageView fx:id="exerciseImage" fitWidth="280" fitHeight="260" style="-fx-effect: dropshadow(gaussian, black, 20, 0.5, 0, 0);" />
+    <VBox alignment="TOP_CENTER" spacing="8" layoutY="32" layoutX="20" prefWidth="390" AnchorPane.topAnchor="32" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="120">
+        <Label fx:id="workoutTitle" text="Today's Workout" style="-fx-text-fill: white; -fx-font-size: 26px; -fx-font-weight: bold;" />
 
-    <!-- Timer / Reps -->
-    <Label fx:id="exerciseDetail" style="-fx-text-fill: #cfcfcf; -fx-font-size: 20px;" />
+        <ListView fx:id="exerciseListView"
+                  prefHeight="500"
+                  style="-fx-background-radius: 10; -fx-font-size:18px; -fx-text-fill: #ecfcfc;" />
+    </VBox>
 
-    <!-- Progress Bar -->
-    <ProgressBar fx:id="progressBar" prefWidth="330" progress="0" style="-fx-accent: #6f8dff;" />
 
-    <!-- Timer countdown -->
-    <Label fx:id="timerLabel" style="-fx-text-fill: #9bb0ff; -fx-font-size: 48px; -fx-font-weight: bold;" />
-</VBox>
+    <HBox alignment="CENTER" spacing="8"
+          AnchorPane.bottomAnchor="24"
+          AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20"
+          prefWidth="390">
 
-<!-- Bottom Buttons -->
-<HBox spacing="20" alignment="CENTER" layoutY="700" prefWidth="430">
-    <Button text="Back" onAction="#goPrev" style="-fx-background-radius: 20; -fx-background-color: #333; -fx-text-fill: white;" prefWidth="120" />
-    <Button text="Next" onAction="#goNext" style="-fx-background-radius: 20; -fx-background-color: #6f8dff; -fx-text-fill: white;" prefWidth="120" />
-</HBox>
+        <Button fx:id="pauseButton" text="Pause"
+                onAction="#handlePauseResume"
+                style="-fx-background-radius: 14; -fx-background-color: #333; -fx-text-fill: white;"
+                prefWidth="120"/>
 
+        <Label fx:id="timerLabel"
+               style="-fx-text-fill: #9bb0ff; -fx-font-size: 38px; -fx-font-weight: bold;"
+               prefWidth="120" alignment="CENTER" />
+
+        <Button fx:id="finishButton" text="End Workout"
+                onAction="#handleFinish"
+                style="-fx-background-radius: 14; -fx-background-color: #ec3453; -fx-text-fill: white;"
+                prefWidth="120"/>
+    </HBox>
 </AnchorPane>

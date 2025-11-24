@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" style="-fx-padding: 32; -fx-background-color: #181f2f" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.demo.WorkoutSessionController">
+
+    <Label fx:id="titleLabel" style="-fx-font-size: 22; -fx-text-fill: white;" />
+    <ListView fx:id="exerciseList" prefHeight="200"/>
+
+    <HBox spacing="14" alignment="CENTER">
+        <Label text="Timer:" style="-fx-text-fill: white;" />
+        <Label fx:id="timerLabel" text="00:00" style="-fx-font-size:18; -fx-text-fill: white;" />
+        <Button fx:id="pauseButton" text="Pause" onAction="#togglePause"/>
+        <Button text="Finish" fx:id="finishButton" onAction="#handleFinish"/>
+    </HBox>
+</VBox>
