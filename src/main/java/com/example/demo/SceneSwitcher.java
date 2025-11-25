@@ -15,8 +15,11 @@ public class SceneSwitcher {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(SceneSwitcher.class.getResource(fxmlPath)));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            double currentWidth = stage.getWidth();
+            double currentHeight = stage.getHeight();
             stage.setTitle(title);
-            stage.setScene(new Scene(root));
+            Scene newScene = new Scene(root, currentWidth, currentHeight);
+            stage.setScene(newScene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

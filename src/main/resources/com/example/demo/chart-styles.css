@@ -1,0 +1,104 @@
+/* Chart Styling for Progress Dashboard */
+
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.axis {
+    -fx-tick-label-fill: #2c3e50;
+    -fx-tick-length: 5;
+}
+
+.axis-label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 12px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #2c3e50;
+}
+
+/* Line Chart Series Colors */
+.default-color0.chart-series-line {
+    -fx-stroke: #667eea;
+    -fx-stroke-width: 3px;
+}
+
+.default-color0.chart-line-symbol {
+    -fx-background-color: #667eea, white;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0, 2;
+    -fx-padding: 5px;
+}
+
+.default-color1.chart-series-line {
+    -fx-stroke: #764ba2;
+    -fx-stroke-width: 3px;
+}
+
+.default-color1.chart-line-symbol {
+    -fx-background-color: #764ba2, white;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0, 2;
+    -fx-padding: 5px;
+}
+
+.default-color2.chart-series-line {
+    -fx-stroke: #27ae60;
+    -fx-stroke-width: 3px;
+}
+
+.default-color2.chart-line-symbol {
+    -fx-background-color: #27ae60, white;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0, 2;
+    -fx-padding: 5px;
+}
+
+/* Bar Chart Colors */
+.default-color0.chart-bar {
+    -fx-bar-fill: #667eea;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #764ba2;
+}
+
+.default-color2.chart-bar {
+    -fx-bar-fill: #27ae60;
+}
+
+.default-color3.chart-bar {
+    -fx-bar-fill: #f39c12;
+}
+
+/* Chart Plot Background */
+.chart-plot-background {
+    -fx-background-color: #f8f9fa;
+}
+
+/* Grid Lines */
+.chart-horizontal-grid-lines {
+    -fx-stroke: #e0e0e0;
+    -fx-stroke-width: 1px;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #e0e0e0;
+    -fx-stroke-width: 1px;
+}
+
+
+
+
+

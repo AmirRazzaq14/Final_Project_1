@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import static com.example.demo.SceneSwitcher.switchScene;
 
 public class LoginController {
+    private static String currentUserEmail;
+    
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
 
@@ -23,11 +25,20 @@ public class LoginController {
                     user.getEmail().equals(inputEmail) &&
                     user.getPassword().equals(inputPassword)) {
                 found = true;
+                currentUserEmail = inputEmail; // Store current user
                 break;
             }
         }
         switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
 
+    }
+    
+    public static String getCurrentUserEmail() {
+        return currentUserEmail;
+    }
+    
+    public static void setCurrentUserEmail(String email) {
+        currentUserEmail = email;
     }
 
     @FXML

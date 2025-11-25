@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane fx:controller="com.example.demo.AddProgressController"
+            xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="700"
+            style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);">
+
+    <VBox alignment="CENTER" spacing="25" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 20; -fx-padding: 40; -fx-pref-width: 550;">
+            <Label text="Add Progress Entry" style="-fx-text-fill: #2c3e50; -fx-font-size: 28px; -fx-font-weight: bold;" />
+            
+            <VBox spacing="15" style="-fx-pref-width: 470;">
+                <VBox spacing="8">
+                    <Label text="Date" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                    <DatePicker fx:id="datePicker" style="-fx-background-radius: 10; -fx-pref-height: 40;" />
+                </VBox>
+                
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Weight (lbs)" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="weightField" promptText="Optional" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Body Fat %" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="bodyFatField" promptText="Optional" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                </HBox>
+                
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Calories Consumed" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="caloriesField" promptText="Optional" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Calorie Target" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="calorieTargetField" promptText="Optional" 
+                                    style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                </HBox>
+                
+                <VBox spacing="8">
+                    <Label text="Steps" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                    <TextField fx:id="stepsField" promptText="Optional" 
+                               style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                </VBox>
+                
+                <Separator />
+                
+                <Label text="Personal Records (Optional)" style="-fx-text-fill: #2c3e50; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Bench PR (lbs)" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="benchWeightField" promptText="Weight" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Reps" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="benchRepsField" promptText="Reps" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                </HBox>
+                
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Squat PR (lbs)" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="squatWeightField" promptText="Weight" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Reps" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="squatRepsField" promptText="Reps" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                </HBox>
+                
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Deadlift PR (lbs)" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="deadliftWeightField" promptText="Weight" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Reps" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                        <TextField fx:id="deadliftRepsField" promptText="Reps" 
+                                   style="-fx-background-radius: 10; -fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <HBox spacing="15" alignment="CENTER" style="-fx-pref-width: 470;">
+                <Button text="Save" onAction="#handleSave" 
+                        style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-pref-width: 200; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" />
+                <Button text="Cancel" onAction="#handleCancel" 
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-pref-width: 200; -fx-pref-height: 45; -fx-cursor: hand;" />
+            </HBox>
+        </VBox>
+    </VBox>
+</AnchorPane>
+
+
+
+
+
