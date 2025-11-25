@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
@@ -32,7 +34,7 @@ public class RegisterController {
 
 
     @FXML
-    public void handleRegister(ActionEvent event) {
+    public void handleRegister(ActionEvent event) throws ExecutionException, InterruptedException {
 
         String first = firstNameField.getText();
         String last = lastNameField.getText();
@@ -50,7 +52,7 @@ public class RegisterController {
 
         Firestore db=FirebaseInitalization.getFirestore();
         CollectionReference users=db.collection("users");
-        DocumentReference user=db.collection("user").document(email);
+        DocumentReference docRef=db.collection("user").document(email);
         if(docRef.get().get().exists()){
             showAlert("Email already exists!");
             return;
