@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/demo/splash.fxml"));
         Firestore db=FirebaseInitalization.getFirestore();
         Scene scene = new Scene(fxmlLoader.load(), 400, 600);
-        stage.setTitle("ShapeShift");
+        stage.setTitle("ShapeShif");
         stage.setScene(scene);
         stage.show();
     }
