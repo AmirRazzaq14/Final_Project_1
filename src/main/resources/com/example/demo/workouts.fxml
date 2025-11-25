@@ -9,27 +9,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700" prefWidth="1000" style="-fx-background-color: linear-gradient(to bottom, #5b6ef5, #a47ef5);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.demo.WorkoutSelectionController">
+<AnchorPane prefHeight="800" prefWidth="1200" style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.demo.WorkoutSelectionController">
 
+    <VBox alignment="CENTER" spacing="25" style="-fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 25; -fx-padding: 50; -fx-pref-width: 700;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0">
 
-    <VBox alignment="CENTER" layoutX="250.0" layoutY="40.0" spacing="16" style="-fx-background-color: rgba(255,255,255,0.15);                  -fx-background-radius: 25;                  -fx-padding: 35;                  -fx-pref-width: 500;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="40.0">
+        <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Select &amp; Add Workouts" />
 
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="Select &amp; Add Workouts" />
+        <VBox spacing="15" style="-fx-pref-width: 600;">
+            <VBox spacing="8">
+                <Label text="Muscle Group" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                <ComboBox fx:id="muscleGroupComboBox" promptText="Select Muscle Group" style="-fx-background-radius: 10; -fx-pref-height: 45; -fx-font-size: 14px;" />
+            </VBox>
 
-        <ComboBox fx:id="muscleGroupComboBox" promptText="Muscle Group" style="-fx-background-radius: 10; -fx-pref-height: 40;" />
+            <VBox spacing="8">
+                <Label text="Search Workouts" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                <TextField fx:id="workoutSearchField" promptText="Search workouts..." style="-fx-background-radius: 10; -fx-pref-height: 45; -fx-font-size: 14px; -fx-padding: 0 15;" />
+            </VBox>
 
-        <TextField fx:id="workoutSearchField" promptText="Search workouts..." style="-fx-background-radius: 10; -fx-pref-height: 38;" />
+            <VBox spacing="8">
+                <Label text="Available Workouts" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
+                <ListView fx:id="workoutListView" prefHeight="200" style="-fx-background-radius: 10; -fx-font-size: 14px;" />
+            </VBox>
+        </VBox>
 
-        <ListView fx:id="workoutListView" prefHeight="150" style="-fx-background-radius: 10;" />
-
-        <HBox spacing="8">
-            <Button onAction="#handleAddWorkout" style="-fx-background-color: #a47ef5;                            -fx-background-radius: 25;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-font-size: 14px;                            -fx-pref-width: 140;                            -fx-pref-height: 35;" text="Add to My Plan" />
-            <Button onAction="#handleRemoveWorkout" style="-fx-background-color: #80b3ff;                            -fx-background-radius: 25;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-font-size: 14px;                            -fx-pref-width: 180;                            -fx-pref-height: 35;" text="Remove from My Plan" />
-
-
-          <Button onAction="#handleBackToHome" style="-fx-background-color: #5b6ef5;                    -fx-background-radius: 25;                    -fx-text-fill: white;                    -fx-font-size: 14px;                    -fx-pref-width: 80;                    -fx-pref-height: 35;" text="Back" />
+        <HBox spacing="12" alignment="CENTER">
+            <Button onAction="#handleAddWorkout" style="-fx-background-color: #667eea; -fx-background-radius: 12; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 160; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" text="Add to My Plan" />
+            <Button onAction="#handleRemoveWorkout" style="-fx-background-color: #e74c3c; -fx-background-radius: 12; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-pref-width: 180; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" text="Remove from Plan" />
+            <Button onAction="#handleBackToHome" style="-fx-background-color: #95a5a6; -fx-background-radius: 12; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 100; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" text="Back" />
         </HBox>
-        <Label style="-fx-font-weight:bold; -fx-text-fill: white;" text="My Workout Plan:" />
-        <ListView fx:id="myWorkoutsListView" prefHeight="90" style="-fx-background-radius: 10;" />
+        
+        <VBox spacing="10" style="-fx-pref-width: 600;">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 18px;" text="My Workout Plan:" />
+            <ListView fx:id="myWorkoutsListView" prefHeight="120" style="-fx-background-radius: 10; -fx-font-size: 14px;" />
+        </VBox>
     </VBox>
 </AnchorPane>

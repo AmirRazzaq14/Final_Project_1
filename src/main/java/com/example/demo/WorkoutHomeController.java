@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -36,6 +38,8 @@ public class WorkoutHomeController {
     @FXML private VBox workoutSection;
     @FXML private VBox workoutList;
     @FXML private Label workoutTitle;
+    @FXML private HBox goalCardsContainer;
+    @FXML private Button customWorkoutsButton;
 
     @FXML
     private void handleCutting() { showWorkouts("Cutting"); }
@@ -47,8 +51,15 @@ public class WorkoutHomeController {
     private void handleMaintain() { showWorkouts("Maintaining"); }
 
     private void showWorkouts(String goal) {
-
+        // Hide goal cards and custom workouts button
+        goalCardsContainer.setVisible(false);
+        goalCardsContainer.setManaged(false);
+        customWorkoutsButton.setVisible(false);
+        customWorkoutsButton.setManaged(false);
+        
+        // Show workout section
         workoutSection.setVisible(true);
+        workoutSection.setManaged(true);
         workoutList.getChildren().clear();
 
         String[][] workouts;
@@ -76,17 +87,33 @@ public class WorkoutHomeController {
             String workoutName = w[0];
 
             Label name = new Label(workoutName);
-            name.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;");
+            name.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;");
 
             Label detail = new Label(w[1]);
-            detail.setStyle("-fx-text-fill: white;");
+            detail.setStyle("-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 16px;");
 
-            VBox card = new VBox(name, detail);
-            card.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 10; -fx-padding: 10;");
+            VBox card = new VBox(10, name, detail);
+            card.setAlignment(javafx.geometry.Pos.CENTER);
+            card.setStyle("-fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 15; -fx-padding: 20; -fx-pref-width: 350; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 3);");
             card.setOnMouseClicked(e -> openWorkout(workoutName));
+            card.setOnMouseEntered(e -> card.setStyle("-fx-background-color: rgba(255,255,255,0.3); -fx-background-radius: 15; -fx-padding: 20; -fx-pref-width: 350; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 12, 0.5, 0, 4);"));
+            card.setOnMouseExited(e -> card.setStyle("-fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 15; -fx-padding: 20; -fx-pref-width: 350; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 3);"));
 
             workoutList.getChildren().add(card);
         }
+    }
+    
+    @FXML
+    private void handleBackToGoals() {
+        // Hide workout section
+        workoutSection.setVisible(false);
+        workoutSection.setManaged(false);
+        
+        // Show goal cards and custom workouts button
+        goalCardsContainer.setVisible(true);
+        goalCardsContainer.setManaged(true);
+        customWorkoutsButton.setVisible(true);
+        customWorkoutsButton.setManaged(true);
     }
 
    
@@ -148,6 +175,31 @@ public class WorkoutHomeController {
 
     public void handleSelectWorkouts(ActionEvent event) {
         SceneSwitcher.switchScene(event, "/com/example/demo/workouts.fxml", "Select Workouts");
+    }
+    
+    @FXML
+    public void handleProfileSetup(ActionEvent event) {
+        try {
+            SceneSwitcher.switchScene(event, "/com/example/demo/profile_setup.fxml", "Profile Setup - ShapeShift");
+        } catch (Exception e) {
+            System.err.println("Error navigating to profile setup: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void handleProgressDashboard(ActionEvent event) {
+        SceneSwitcher.switchScene(event, "/com/example/demo/progress_dashboard.fxml", "Progress Dashboard - ShapeShift");
+    }
+    
+    @FXML
+    public void handlePersonalCustomization(ActionEvent event) {
+        SceneSwitcher.switchScene(event, "/com/example/demo/personal_customization.fxml", "Personal Customization - ShapeShift");
+    }
+    
+    @FXML
+    public void handleMyWorkoutPlan(ActionEvent event) {
+        SceneSwitcher.switchScene(event, "/com/example/demo/my_workout_plan.fxml", "My Workout Plan - ShapeShift");
     }
 }
 
