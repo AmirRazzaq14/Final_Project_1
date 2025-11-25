@@ -9,12 +9,13 @@ import java.io.IOException;
 
 public class FirebaseInitalization {
     private static boolean initialized = false;
+    private static Firestore db;
 
-    public Firestore firebase() {
+    public static Firestore getFirestore() {
         if (!initialized) {
             initializeFirebase();
         }
-        return FirestoreClient.getFirestore();
+        return db;
     }
     private static void initializeFirebase() {
 try{
@@ -34,5 +35,5 @@ try{
         }
     }
 
-
+ return FirestoreClient.getFirestore();
 }
