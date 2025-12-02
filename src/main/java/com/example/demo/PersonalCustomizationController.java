@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.google.cloud.firestore.Firestore;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -163,7 +164,7 @@ public class PersonalCustomizationController {
             return;
         }
         
-        String email = LoginController.getCurrentUserEmail();
+        String email = SessionManager.getCurrentEmail();
         if (email == null) {
             showAlert("Please log in first.");
             return;

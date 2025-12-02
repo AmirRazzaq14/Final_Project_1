@@ -2,8 +2,8 @@ package com.example.demo;
 
 public class UserCred {
 
-    private String email;
-    private String password;
+    public String email;
+    public String password;
 
     public UserCred(String email, String password) {
         this.email = email;

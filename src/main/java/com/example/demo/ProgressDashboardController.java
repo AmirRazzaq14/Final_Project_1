@@ -29,7 +29,7 @@ public class ProgressDashboardController {
     
     @FXML
     public void initialize() {
-        currentUserEmail = LoginController.getCurrentUserEmail();
+        currentUserEmail = SessionManager.getCurrentEmail();
         
         // Check Firebase connection
         if (!FirebaseConnectionManager.isConnected()) {

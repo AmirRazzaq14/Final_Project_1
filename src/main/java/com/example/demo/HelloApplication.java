@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.google.cloud.firestore.Firestore;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/demo/splash.fxml"));
+        Firestore db=FirebaseConnectionManager.getFirestore();
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("ShapeShift - Your Personal Workout Companion");
         stage.setScene(scene);
@@ -17,7 +19,6 @@ public class HelloApplication extends Application {
         stage.setMinHeight(700);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }

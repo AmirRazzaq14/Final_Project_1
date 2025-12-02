@@ -37,7 +37,7 @@ public class AddProgressController {
     
     @FXML
     private void handleSave() {
-        String email = LoginController.getCurrentUserEmail();
+        String email = SessionManager.getCurrentEmail();
         if (email == null) {
             showAlert("Please log in first.");
             return;
