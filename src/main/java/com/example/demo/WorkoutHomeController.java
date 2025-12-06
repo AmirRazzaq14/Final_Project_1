@@ -180,9 +180,10 @@ public class WorkoutHomeController {
     @FXML
     public void handleProfileSetup(ActionEvent event) {
         try {
-            SceneSwitcher.switchScene(event, "/com/example/demo/profile_setup.fxml", "Profile Setup - ShapeShift");
+            // Navigate to profile view page instead of setup
+            SceneSwitcher.switchScene(event, "/com/example/demo/profile_view.fxml", "My Profile - ShapeShift");
         } catch (Exception e) {
-            System.err.println("Error navigating to profile setup: " + e.getMessage());
+            System.err.println("Error navigating to profile: " + e.getMessage());
             e.printStackTrace();
         }
     }

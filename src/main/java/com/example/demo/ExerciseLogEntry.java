@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ExerciseLogEntry {
+public class ExerciseLogEntry implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String exerciseName;
     private int sets;
     private int reps;
