@@ -15,22 +15,26 @@ public class LoginController {
 
     @FXML
     public void handleLogin(ActionEvent event) {
-
         String inputEmail = emailField.getText();
         String inputPassword = passwordField.getText();
 
-        boolean found = false;
-        for (UserCred user : RegisterController.userList) {
-            if (user.getEmail() != null && user.getPassword() != null &&
-                    user.getEmail().equals(inputEmail) &&
-                    user.getPassword().equals(inputPassword)) {
-                found = true;
-                currentUserEmail = inputEmail; // Store current user
-                break;
-            }
+        if (inputEmail.isEmpty() || inputPassword.isEmpty()) {
+            showAlert("Please enter both email and password.");
+            return;
         }
-        switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
 
+        // Use FirebaseService for authentication
+        FirebaseService firebaseService = FirebaseService.getInstance();
+        boolean found = firebaseService.loginUser(inputEmail, inputPassword);
+        
+        if (found) {
+            currentUserEmail = inputEmail; // Store current user
+            // Increment login count
+            DataManager.incrementLoginCount(inputEmail);
+            switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
+        } else {
+            showAlert("Invalid email or password. Please try again.");
+        }
     }
     
     public static String getCurrentUserEmail() {

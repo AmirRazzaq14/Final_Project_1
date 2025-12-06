@@ -13,12 +13,12 @@
     <!-- Navigation Buttons -->
     <HBox spacing="15" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30">
         <Button text="My Profile" onAction="#handleProfileSetup" 
-                style="-fx-background-color: white; -fx-background-radius: 25; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-pref-width: 140; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" />
+                style="-fx-background-color: white; -fx-background-radius: 25; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-min-width: 140; -fx-pref-width: 140; -fx-max-width: 140; -fx-min-height: 45; -fx-pref-height: 45; -fx-max-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2); -fx-padding: 10 20; -fx-content-display: CENTER; -fx-alignment: CENTER;" />
         <Button text="My Workout Plan" onAction="#handleMyWorkoutPlan" 
-                style="-fx-background-color: white; -fx-background-radius: 25; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-pref-width: 180; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" />
+                style="-fx-background-color: white; -fx-background-radius: 25; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-min-width: 180; -fx-pref-width: 180; -fx-max-width: 180; -fx-min-height: 45; -fx-pref-height: 45; -fx-max-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2); -fx-padding: 10 20; -fx-content-display: CENTER; -fx-alignment: CENTER;" />
         <Region HBox.hgrow="ALWAYS" />
         <Button text="Progress Dashboard" onAction="#handleProgressDashboard" 
-                style="-fx-background-color: white; -fx-background-radius: 25; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-pref-width: 200; -fx-pref-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" />
+                style="-fx-background-color: white; -fx-background-radius: 25; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-min-width: 200; -fx-pref-width: 200; -fx-max-width: 200; -fx-min-height: 45; -fx-pref-height: 45; -fx-max-height: 45; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2); -fx-padding: 10 20; -fx-content-display: CENTER; -fx-alignment: CENTER;" />
     </HBox>
 
     <!-- Title -->

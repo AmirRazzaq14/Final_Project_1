@@ -6,23 +6,19 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyWorkoutPlanController {
     
     @FXML private Label planTitleLabel;
-    @FXML private Label planNameLabel;
-    @FXML private Label planDatesLabel;
-    @FXML private VBox weeklyPlanContainer;
-    @FXML private Label workoutsCompletedLabel;
-    @FXML private Label exercisesLoggedLabel;
+    @FXML private VBox selectedWorkoutsContainer;
+    @FXML private VBox loggedExercisesContainer;
     @FXML private HBox connectionWarningBox;
     @FXML private Label connectionWarningLabel;
     
     private String currentUserEmail;
-    private WorkoutPlan currentPlan;
     
     @FXML
     public void initialize() {
@@ -30,176 +26,193 @@ public class MyWorkoutPlanController {
         
         // Check Firebase connection
         if (!FirebaseConnectionManager.isConnected()) {
-            connectionWarningBox.setVisible(true);
-            connectionWarningLabel.setText("Firebase connection not available. Using local data storage.");
+            if (connectionWarningBox != null) {
+                connectionWarningBox.setVisible(true);
+                if (connectionWarningLabel != null) {
+                    connectionWarningLabel.setText("Firebase connection not available. Using local data storage.");
+                }
+            }
         } else {
-            connectionWarningBox.setVisible(false);
+            if (connectionWarningBox != null) {
+                connectionWarningBox.setVisible(false);
+            }
         }
         
-        loadWorkoutPlan();
-        updateProgressSummary();
+        loadSelectedWorkouts();
+        loadLoggedExercises();
     }
     
-    private void loadWorkoutPlan() {
+    private void loadSelectedWorkouts() {
         if (currentUserEmail == null) {
-            showNoPlanMessage();
+            showNoWorkoutsMessage();
             return;
         }
         
-        currentPlan = DataManager.getWorkoutPlan(currentUserEmail);
+        List<String> workouts = DataManager.getSelectedWorkouts(currentUserEmail);
         
-        if (currentPlan == null) {
-            showNoPlanMessage();
+        if (workouts == null || workouts.isEmpty()) {
+            showNoWorkoutsMessage();
             return;
         }
         
-        // Display plan info
-        planNameLabel.setText(currentPlan.getPlanName());
-        String dateRange = currentPlan.getStartDate().format(DateTimeFormatter.ofPattern("MMM d, yyyy")) + 
-                          " - " + currentPlan.getEndDate().format(DateTimeFormatter.ofPattern("MMM d, yyyy"));
-        planDatesLabel.setText("Week " + currentPlan.getCurrentWeek() + " | " + dateRange);
-        
-        // Display weekly plan
-        displayWeeklyPlan(currentPlan);
+        displaySelectedWorkouts(workouts);
     }
     
-    private void showNoPlanMessage() {
-        planNameLabel.setText("No Workout Plan Generated");
-        planDatesLabel.setText("Create a profile to generate your personalized workout plan");
-        weeklyPlanContainer.getChildren().clear();
+    private void showNoWorkoutsMessage() {
+        if (selectedWorkoutsContainer == null) return;
+        selectedWorkoutsContainer.getChildren().clear();
         
-        Label noPlanLabel = new Label("No workout plan available. Click 'Create/Update Plan' to generate one.");
-        noPlanLabel.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 16px; -fx-padding: 20;");
-        weeklyPlanContainer.getChildren().add(noPlanLabel);
+        Label noWorkoutsLabel = new Label("No workouts selected yet. Go to 'Filter & Select Custom Workouts' to add workouts to your plan.");
+        noWorkoutsLabel.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 16px; -fx-padding: 20; -fx-wrap-text: true;");
+        selectedWorkoutsContainer.getChildren().add(noWorkoutsLabel);
     }
     
-    private void displayWeeklyPlan(WorkoutPlan plan) {
-        weeklyPlanContainer.getChildren().clear();
+    private void displaySelectedWorkouts(List<String> workouts) {
+        if (selectedWorkoutsContainer == null) return;
         
-        List<DailyWorkout> weeklyPlan = plan.getWeeklyPlan();
-        if (weeklyPlan == null || weeklyPlan.isEmpty()) {
-            showNoPlanMessage();
-            return;
-        }
+        selectedWorkoutsContainer.getChildren().clear();
         
-        for (DailyWorkout daily : weeklyPlan) {
-            VBox dayCard = createDayCard(daily);
-            weeklyPlanContainer.getChildren().add(dayCard);
+        for (String workout : workouts) {
+            VBox workoutCard = createWorkoutCard(workout);
+            selectedWorkoutsContainer.getChildren().add(workoutCard);
         }
     }
     
-    private VBox createDayCard(DailyWorkout daily) {
-        VBox card = new VBox(15);
+    private VBox createWorkoutCard(String workoutName) {
+        VBox card = new VBox(10);
         card.setStyle("-fx-background-color: rgba(102,126,234,0.1); -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: rgba(102,126,234,0.3); -fx-border-width: 2; -fx-border-radius: 12;");
         
-        HBox header = new HBox(15);
-        Label dayLabel = new Label(daily.getDay().toString());
-        dayLabel.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
-        Label focusLabel = new Label(daily.getFocusArea());
-        focusLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #667eea; -fx-font-weight: bold;");
-        header.getChildren().addAll(dayLabel, focusLabel);
+        Label workoutLabel = new Label(workoutName);
+        workoutLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
         
-        card.getChildren().add(header);
-        
-        if (daily.isRestDay()) {
-            Label restLabel = new Label("Rest Day - Recovery is important for progress!");
-            restLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: #7f8c8d; -fx-font-style: italic;");
-            card.getChildren().add(restLabel);
-        } else {
-            VBox exercisesBox = new VBox(10);
-            for (WorkoutExercise exercise : daily.getExercises()) {
-                HBox exerciseRow = new HBox(10);
-                Label exerciseLabel = new Label(exercise.toString());
-                exerciseLabel.setStyle("-fx-font-size: 15px; -fx-text-fill: #2c3e50;");
-                
-                Button logBtn = new Button("Log");
-                logBtn.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 8; -fx-pref-width: 60; -fx-pref-height: 30; -fx-cursor: hand;");
-                String exerciseName = exercise.getName();
-                logBtn.setOnAction(e -> handleQuickLogExercise(exerciseName));
-                
-                exerciseRow.getChildren().addAll(exerciseLabel, logBtn);
-                exercisesBox.getChildren().add(exerciseRow);
-            }
-            card.getChildren().add(exercisesBox);
-        }
-        
+        card.getChildren().add(workoutLabel);
         return card;
     }
     
-    private void updateProgressSummary() {
-        if (currentUserEmail == null) return;
+    private void loadLoggedExercises() {
+        if (currentUserEmail == null || loggedExercisesContainer == null) {
+            showNoLoggedExercisesMessage();
+            return;
+        }
         
-        // Get workout sessions for this week
         List<WorkoutSession> sessions = DataManager.getWorkoutSessions(currentUserEmail);
-        LocalDate weekStart = LocalDate.now().minusDays(LocalDate.now().getDayOfWeek().getValue() - 1);
         
-        int workoutsThisWeek = 0;
-        int exercisesThisWeek = 0;
+        if (sessions == null || sessions.isEmpty()) {
+            showNoLoggedExercisesMessage();
+            return;
+        }
         
+        // Collect all exercises from all sessions
+        List<ExerciseLogEntry> allExercises = new ArrayList<>();
         for (WorkoutSession session : sessions) {
-            if (session.getDate().isAfter(weekStart.minusDays(1))) {
-                workoutsThisWeek++;
-                if (session.getExercises() != null) {
-                    exercisesThisWeek += session.getExercises().size();
-                }
+            if (session.getExercises() != null) {
+                allExercises.addAll(session.getExercises());
             }
         }
         
-        workoutsCompletedLabel.setText("Workouts Completed: " + workoutsThisWeek);
-        exercisesLoggedLabel.setText("Exercises Logged: " + exercisesThisWeek);
-    }
-    
-    @FXML
-    private void handleCreatePlan(ActionEvent event) {
-        SceneSwitcher.switchScene(event, "/com/example/demo/profile_setup.fxml", "Profile Setup - ShapeShift");
-    }
-    
-    @FXML
-    private void handleStartWorkout(ActionEvent event) {
-        if (currentPlan == null) {
-            showAlert("Please create a workout plan first.");
+        if (allExercises.isEmpty()) {
+            showNoLoggedExercisesMessage();
             return;
         }
-        SceneSwitcher.switchScene(event, "/com/example/demo/personal_customization.fxml", "Personal Customization - ShapeShift");
+        
+        // Sort by date (newest first)
+        allExercises.sort((a, b) -> b.getDate().compareTo(a.getDate()));
+        
+        displayLoggedExercises(allExercises);
+    }
+    
+    private void showNoLoggedExercisesMessage() {
+        if (loggedExercisesContainer == null) return;
+        loggedExercisesContainer.getChildren().clear();
+        
+        Label noExercisesLabel = new Label("No exercises logged yet. Go to 'Log Workout' to start logging your exercises.");
+        noExercisesLabel.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 16px; -fx-padding: 20; -fx-wrap-text: true;");
+        loggedExercisesContainer.getChildren().add(noExercisesLabel);
+    }
+    
+    private void displayLoggedExercises(List<ExerciseLogEntry> exercises) {
+        if (loggedExercisesContainer == null) return;
+        
+        loggedExercisesContainer.getChildren().clear();
+        
+        for (ExerciseLogEntry exercise : exercises) {
+            VBox exerciseCard = createExerciseCard(exercise);
+            loggedExercisesContainer.getChildren().add(exerciseCard);
+        }
+    }
+    
+    private VBox createExerciseCard(ExerciseLogEntry exercise) {
+        VBox card = new VBox(10);
+        card.setStyle("-fx-background-color: rgba(39,174,96,0.1); -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: rgba(39,174,96,0.3); -fx-border-width: 2; -fx-border-radius: 12;");
+        
+        HBox header = new HBox(10);
+        Label exerciseName = new Label(exercise.getExerciseName());
+        exerciseName.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
+        
+        Label dateLabel = new Label(exercise.getDate().format(DateTimeFormatter.ofPattern("MMM d, yyyy")));
+        dateLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #7f8c8d;");
+        
+        header.getChildren().addAll(exerciseName, dateLabel);
+        
+        VBox details = new VBox(5);
+        if (exercise.getSets() > 0) {
+            Label setsLabel = new Label("Sets: " + exercise.getSets());
+            setsLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #2c3e50;");
+            details.getChildren().add(setsLabel);
+        }
+        if (exercise.getReps() > 0) {
+            Label repsLabel = new Label("Reps: " + exercise.getReps());
+            repsLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #2c3e50;");
+            details.getChildren().add(repsLabel);
+        }
+        if (exercise.getWeight() > 0) {
+            Label weightLabel = new Label("Weight: " + String.format("%.1f lbs", exercise.getWeight()));
+            weightLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #2c3e50;");
+            details.getChildren().add(weightLabel);
+        }
+        if (exercise.getRpe() > 0) {
+            Label rpeLabel = new Label("RPE: " + exercise.getRpe() + "/10");
+            rpeLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #2c3e50;");
+            details.getChildren().add(rpeLabel);
+        }
+        
+        card.getChildren().addAll(header, details);
+        return card;
     }
     
     @FXML
     private void handleLogWorkout(ActionEvent event) {
-        SceneSwitcher.switchScene(event, "/com/example/demo/personal_customization.fxml", "Personal Customization - ShapeShift");
+        if (currentUserEmail == null || currentUserEmail.isEmpty()) {
+            showAlert("Please log in first.");
+            return;
+        }
+        
+        try {
+            SceneSwitcher.switchScene(event, "/com/example/demo/personal_customization.fxml", "Personal Customization - ShapeShift");
+        } catch (Exception e) {
+            showAlert("Error navigating to workout log: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     @FXML
     private void handleViewProgress(ActionEvent event) {
-        SceneSwitcher.switchScene(event, "/com/example/demo/progress_dashboard.fxml", "Progress Dashboard - ShapeShift");
+        if (currentUserEmail == null || currentUserEmail.isEmpty()) {
+            showAlert("Please log in first.");
+            return;
+        }
+        
+        try {
+            SceneSwitcher.switchScene(event, "/com/example/demo/progress_dashboard.fxml", "Progress Dashboard - ShapeShift");
+        } catch (Exception e) {
+            showAlert("Error navigating to progress dashboard: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     @FXML
     private void handleBack(ActionEvent event) {
         SceneSwitcher.switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
-    }
-    
-    private void handleQuickLogExercise(String exerciseName) {
-        // Navigate to Personal Customization
-        try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/example/demo/personal_customization.fxml"));
-            javafx.scene.Parent root = loader.load();
-            PersonalCustomizationController controller = loader.getController();
-            // Pre-fill exercise name
-            if (controller != null && exerciseName != null) {
-                controller.preFillExercise(exerciseName);
-            }
-            
-            javafx.stage.Stage stage = (javafx.stage.Stage) planNameLabel.getScene().getWindow();
-            double width = stage.getWidth();
-            double height = stage.getHeight();
-            stage.setScene(new javafx.scene.Scene(root, width, height));
-            stage.setTitle("Personal Customization - ShapeShift");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Fallback navigation
-            showAlert("Navigating to Personal Customization...");
-        }
     }
     
     private void showAlert(String message) {

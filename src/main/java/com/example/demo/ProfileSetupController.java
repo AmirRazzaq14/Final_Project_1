@@ -14,7 +14,7 @@ public class ProfileSetupController {
     @FXML private ToggleButton goalCut;
     @FXML private ToggleButton goalMaintain;
     @FXML private ToggleGroup goalGroup;
-    
+    @FXML private Label userEmailLabel;
     @FXML private ToggleButton expBeginner;
     @FXML private ToggleButton expIntermediate;
     @FXML private ToggleButton expAdvanced;
@@ -61,6 +61,13 @@ public class ProfileSetupController {
         
         // Load existing profile if available
         currentUserEmail = getCurrentUserEmail();
+        if (userEmailLabel != null) {
+            if (currentUserEmail != null && !currentUserEmail.isBlank()) {
+                userEmailLabel.setText("Signed in as: " + currentUserEmail);
+            } else {
+                userEmailLabel.setText("Please log in to save your profile.");
+            }
+        }
         if (currentUserEmail != null) {
             UserProfile existing = DataManager.getProfile(currentUserEmail);
             if (existing != null) {
@@ -187,8 +194,13 @@ public class ProfileSetupController {
             "Your personalized workout plan has been generated!";
         showAlert(message);
         
-        // Navigate to My Workout Plan page
-        SceneSwitcher.switchScene(event, "/com/example/demo/my_workout_plan.fxml", "My Workout Plan - ShapeShift");
+        // Navigate to My Workout Plan page to see the generated plan
+        try {
+            SceneSwitcher.switchScene(event, "/com/example/demo/my_workout_plan.fxml", "My Workout Plan - ShapeShift");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Plan generated successfully! You can view it from the My Workout Plan page.");
+        }
     }
     
     @FXML

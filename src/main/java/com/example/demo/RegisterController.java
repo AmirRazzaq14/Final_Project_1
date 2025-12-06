@@ -23,13 +23,10 @@ public class RegisterController {
 
     @FXML
     public void handleRegister(ActionEvent event) {
-
-
         String first = firstNameField.getText();
         String last = lastNameField.getText();
         String email = emailField.getText();
         String pass = passwordField.getText();
-
 
         if (first.isEmpty() || last.isEmpty() || email.isEmpty() || pass.isEmpty()) {
             showAlert("All fields are required!");
@@ -39,12 +36,22 @@ public class RegisterController {
             showAlert("Invalid email format!");
             return;
         }
-
-
-
-
-
-        SceneSwitcher.switchScene(event, "login.fxml", "Login");
+        
+        // Check if user already exists
+        FirebaseService firebaseService = FirebaseService.getInstance();
+        if (firebaseService.userExists(email)) {
+            showAlert("An account with this email already exists!");
+            return;
+        }
+        
+        // Register user
+        boolean success = firebaseService.registerUser(email, pass, first, last);
+        if (success) {
+            showAlert("Registration successful! You can now log in.");
+            SceneSwitcher.switchScene(event, "/com/example/demo/login.fxml", "Login");
+        } else {
+            showAlert("Registration failed. Please try again.");
+        }
     }
     @FXML
     private void handleBackButton(ActionEvent event) throws IOException {

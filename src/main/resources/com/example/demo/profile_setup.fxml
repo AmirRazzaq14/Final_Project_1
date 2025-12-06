@@ -20,6 +20,7 @@
             <VBox alignment="CENTER" spacing="25" style="-fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 25; -fx-padding: 50; -fx-pref-width: 700;">
                 <Label text="Create Your Personalized Workout Plan" style="-fx-text-fill: #2c3e50; -fx-font-size: 36px; -fx-font-weight: bold;" />
                 <Label text="Tell us about yourself to generate a custom plan" style="-fx-text-fill: #7f8c8d; -fx-font-size: 16px;" />
+                <Label fx:id="userEmailLabel" text="" style="-fx-text-fill: #667eea; -fx-font-size: 14px; -fx-font-weight: bold;" />
 
                 <VBox spacing="20" style="-fx-pref-width: 600;">
                     <!-- Goal Selection -->
