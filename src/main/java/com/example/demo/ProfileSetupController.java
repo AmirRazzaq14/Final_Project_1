@@ -79,7 +79,8 @@ public class ProfileSetupController {
     private String getCurrentUserEmail() {
         // Try to get from a static variable or session
         // For now, we'll use a simple approach - store in LoginController
-        return LoginController.getCurrentUserEmail();
+        String str=new String("hello");
+     return str="test";   //add back (return LoginController.getCurrentUserEmail();) once finished testing
     }
     
     private void loadProfile(UserProfile profile) {
@@ -179,7 +180,7 @@ public class ProfileSetupController {
         profile.setInjuries(injuries);
         
         // Check Firebase connection
-        boolean usingLocal = !FirebaseConnectionManager.isConnected();
+        boolean usingLocal = !FirebaseConnectionManager.isConnected();  //add back (boolean usingLocal = !FirebaseConnectionManager.isConnected(); ) once done
         
         // Save profile
         DataManager.saveProfile(profile);
