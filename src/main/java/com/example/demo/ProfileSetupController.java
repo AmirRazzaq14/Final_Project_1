@@ -79,8 +79,7 @@ public class ProfileSetupController {
     private String getCurrentUserEmail() {
         // Try to get from a static variable or session
         // For now, we'll use a simple approach - store in LoginController
-        String str=new String("hello");
-     return str="test";   //add back (return LoginController.getCurrentUserEmail();) once finished testing
+        return LoginController.getCurrentUserEmail();
     }
     
     private void loadProfile(UserProfile profile) {

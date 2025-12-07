@@ -29,6 +29,7 @@ public class LoginController {
         
         if (found) {
             currentUserEmail = inputEmail; // Store current user
+            SessionManager.setCurrentEmail(inputEmail); // Also set in SessionManager
             // Increment login count
             DataManager.incrementLoginCount(inputEmail);
             switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");

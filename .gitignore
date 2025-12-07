@@ -1,0 +1,27 @@
+# Firebase Service Account Key (DO NOT COMMIT)
+firebase-service-account-key.json
+
+# Local data files
+*.dat
+firebase_users.dat
+user_profiles.dat
+progress_data.dat
+workout_plans.dat
+workout_sessions.dat
+selected_workouts.dat
+login_counts.dat
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Maven
+target/
+.mvn/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+

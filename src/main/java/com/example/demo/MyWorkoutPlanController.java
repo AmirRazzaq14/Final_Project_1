@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,11 @@ public class MyWorkoutPlanController {
     
     @FXML
     public void initialize() {
+        // Try SessionManager first, then fallback to LoginController
         currentUserEmail = SessionManager.getCurrentEmail();
+        if (currentUserEmail == null) {
+            currentUserEmail = LoginController.getCurrentUserEmail();
+        }
         
         // Check Firebase connection
         if (!FirebaseConnectionManager.isConnected()) {
@@ -149,7 +152,7 @@ public class MyWorkoutPlanController {
         Label exerciseName = new Label(exercise.getExerciseName());
         exerciseName.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
         
-        Label dateLabel = new Label(exercise.getDate().format(DateTimeFormatter.ofPattern("MMM d, yyyy")));
+        Label dateLabel = new Label(exercise.getDate().toString());
         dateLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #7f8c8d;");
         
         header.getChildren().addAll(exerciseName, dateLabel);

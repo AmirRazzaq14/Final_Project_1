@@ -1,26 +1,16 @@
 package com.example.demo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Firebase Service for authentication and data management
- * This service handles user registration, login, and data persistence
+ * Firebase Service for authentication only
+ * This service handles user registration and login using Firebase Auth
+ * All other data (profiles, workouts, progress) is stored locally via DataManager
  */
 public class FirebaseService {
     private static FirebaseService instance;
-    private Map<String, UserCred> users = new HashMap<>();
-    private boolean firebaseEnabled = false;
     
     private FirebaseService() {
-        // Initialize with existing users from RegisterController if any
-        if (RegisterController.userList != null) {
-            for (UserCred user : RegisterController.userList) {
-                if (user.getEmail() != null) {
-                    users.put(user.getEmail(), user);
-                }
-            }
-        }
+        // Initialize Firebase connection
+        FirebaseConnectionManager.setConnected(true);
     }
     
     public static synchronized FirebaseService getInstance() {
@@ -31,69 +21,53 @@ public class FirebaseService {
     }
     
     /**
-     * Register a new user
+     * Register a new user using Firebase Auth
+     * Falls back to local storage if Firebase is not configured
      */
     public boolean registerUser(String email, String password, String firstName, String lastName) {
         if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
             return false;
         }
         
-        // Check if user already exists
-        if (users.containsKey(email)) {
-            return false;
+        // Use FirebaseConnectionManager for registration
+        boolean success = FirebaseConnectionManager.registerUser(email, password);
+        
+        if (success) {
+            // Also add to RegisterController's list for backward compatibility
+            UserCred newUser = new UserCred(email, password);
+            if (!RegisterController.userList.contains(newUser)) {
+                RegisterController.userList.add(newUser);
+            }
         }
         
-        // Create new user
-        UserCred newUser = new UserCred(email, password);
-        users.put(email, newUser);
-        
-        // Also add to RegisterController's list for backward compatibility
-        if (!RegisterController.userList.contains(newUser)) {
-            RegisterController.userList.add(newUser);
-        }
-        
-        // If Firebase is enabled, save to Firebase here
-        if (firebaseEnabled) {
-            // TODO: Implement Firebase registration
-            // saveUserToFirebase(email, password, firstName, lastName);
-        }
-        
-        return true;
+        return success;
     }
     
     /**
-     * Authenticate a user
+     * Authenticate a user using Firebase Auth
+     * Falls back to local storage if Firebase is not configured
      */
     public boolean loginUser(String email, String password) {
         if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
             return false;
         }
         
-        UserCred user = users.get(email);
-        if (user != null && user.getPassword().equals(password)) {
-            // If Firebase is enabled, verify with Firebase
-            if (firebaseEnabled) {
-                // TODO: Implement Firebase authentication
-                // return authenticateWithFirebase(email, password);
-            }
-            return true;
-        }
-        
-        return false;
+        // Use FirebaseConnectionManager for authentication
+        return FirebaseConnectionManager.authenticate(email, password);
     }
     
     /**
-     * Check if user exists
+     * Check if user exists in Firebase or local storage
      */
     public boolean userExists(String email) {
-        return users.containsKey(email);
+        return FirebaseConnectionManager.userExists(email);
     }
     
     /**
      * Enable Firebase integration
+     * Note: Firebase is automatically enabled if service account key is found
      */
     public void enableFirebase(boolean enabled) {
-        this.firebaseEnabled = enabled;
         FirebaseConnectionManager.setFirebaseEnabled(enabled);
         if (enabled) {
             FirebaseConnectionManager.setConnected(true);
@@ -101,9 +75,19 @@ public class FirebaseService {
     }
     
     /**
-     * Get user credentials
+     * Get user credentials (for backward compatibility)
+     * Note: In Firebase mode, we don't store passwords locally
      */
     public UserCred getUser(String email) {
-        return users.get(email);
+        // Return a UserCred object for backward compatibility
+        // Password is not stored when using Firebase Auth
+        return new UserCred(email, "");
+    }
+    
+    /**
+     * Check if Firebase is connected
+     */
+    public boolean isFirebaseConnected() {
+        return FirebaseConnectionManager.isConnected();
     }
 }

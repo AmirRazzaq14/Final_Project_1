@@ -3,12 +3,8 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-
-import java.time.format.DateTimeFormatter;
 
 public class WorkoutPlanViewController {
     
