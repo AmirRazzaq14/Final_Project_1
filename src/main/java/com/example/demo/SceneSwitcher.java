@@ -17,6 +17,8 @@ public class SceneSwitcher {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             double currentWidth = stage.getWidth();
             double currentHeight = stage.getHeight();
+            if (currentWidth <= 0) currentWidth = 1200;
+            if (currentHeight <= 0) currentHeight = 800;
             stage.setTitle(title);
             Scene newScene = new Scene(root, currentWidth, currentHeight);
             stage.setScene(newScene);

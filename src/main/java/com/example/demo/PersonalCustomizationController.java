@@ -173,8 +173,11 @@ public class PersonalCustomizationController {
         // Check Firebase connection
         boolean usingLocal = !FirebaseConnectionManager.isConnected();
         
+        // Create a copy of exercise entries to save (to avoid reference issues)
+        List<ExerciseLogEntry> exercisesToSave = new ArrayList<>(exerciseEntries);
+        
         // Save workout session
-        WorkoutSession session = new WorkoutSession(LocalDate.now(), LocalTime.now(), exerciseEntries, stopwatchSeconds);
+        WorkoutSession session = new WorkoutSession(LocalDate.now(), LocalTime.now(), exercisesToSave, stopwatchSeconds);
         DataManager.saveWorkoutSession(email, session);
         
         // Also update progress data with PRs if any

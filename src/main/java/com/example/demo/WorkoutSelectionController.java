@@ -32,8 +32,15 @@ public class WorkoutSelectionController {
         muscleGroupComboBox.setOnAction(e -> updateWorkouts());
 
         updateWorkouts();
+        
+        // Load saved workouts
+        String email = LoginController.getCurrentUserEmail();
+        if (email != null) {
+            List<String> saved = DataManager.getSelectedWorkouts(email);
+            myWorkouts.addAll(saved);
+        }
+        
         myWorkoutsListView.setItems(myWorkouts);
-
 
         workoutSearchField.textProperty().addListener((obs, oldVal, newVal) -> applySearchFilter(newVal));
     }
@@ -84,6 +91,11 @@ public class WorkoutSelectionController {
 
     @FXML
     private void handleBackToHome(javafx.event.ActionEvent event) {
+        // Save selected workouts before leaving
+        String email = LoginController.getCurrentUserEmail();
+        if (email != null && !myWorkouts.isEmpty()) {
+            DataManager.saveSelectedWorkouts(email, new ArrayList<>(myWorkouts));
+        }
         SceneSwitcher.switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
     }
 }

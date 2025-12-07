@@ -1,10 +1,12 @@
 package com.example.demo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class WorkoutSession {
+public class WorkoutSession implements Serializable {
+    private static final long serialVersionUID = 1L;
     private LocalDate date;
     private LocalTime time;
     private List<ExerciseLogEntry> exercises;
