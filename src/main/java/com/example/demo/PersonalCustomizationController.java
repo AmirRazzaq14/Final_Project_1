@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.time.LocalDate;
@@ -65,25 +64,8 @@ public class PersonalCustomizationController {
     private ObservableList<String> exerciseLog = FXCollections.observableArrayList();
     private List<com.example.demo.ExerciseLogEntry> exerciseEntries = new ArrayList<>();
     
-    @FXML private HBox connectionWarningBox;
-    @FXML private Label connectionWarningLabel;
-    
     @FXML
     public void initialize() {
-        // Check Firebase connection
-        if (!FirebaseConnectionManager.isConnected()) {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(true);
-                if (connectionWarningLabel != null) {
-                    connectionWarningLabel.setText("Firebase connection not available. Workout data will be saved locally.");
-                }
-            }
-        } else {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(false);
-            }
-        }
-        
         // Setup RPE slider listener
         rpeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             int rpe = newVal.intValue();
@@ -169,9 +151,6 @@ public class PersonalCustomizationController {
             return;
         }
         
-        // Check Firebase connection
-        boolean usingLocal = !FirebaseConnectionManager.isConnected();
-        
         // Create a copy of exercise entries to save (to avoid reference issues)
         List<ExerciseLogEntry> exercisesToSave = new ArrayList<>(exerciseEntries);
         
@@ -182,10 +161,7 @@ public class PersonalCustomizationController {
         // Also update progress data with PRs if any
         updateProgressWithPRs(email, exerciseEntries);
         
-        String message = usingLocal ? 
-            "Workout saved locally! (Firebase not connected)" : 
-            "Workout saved successfully!";
-        showAlert(message);
+        showAlert("Workout saved successfully!");
         handleClearLog();
         handleStopwatchReset();
     }

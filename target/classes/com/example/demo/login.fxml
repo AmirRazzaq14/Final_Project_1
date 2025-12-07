@@ -4,32 +4,28 @@
 <?import javafx.geometry.*?>
 <AnchorPane fx:controller="com.example.demo.LoginController"
             xmlns:fx="http://javafx.com/fxml" prefWidth="1200" prefHeight="800"
-            style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);">
+            stylesheets="@shapeshift-styles.css"
+            styleClass="anchor-pane">
     <VBox alignment="CENTER" spacing="30" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <VBox alignment="CENTER" spacing="25" style="-fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 20; -fx-padding: 50; -fx-pref-width: 450;">
-            <Label text="Welcome Back" style="-fx-text-fill: #2c3e50; -fx-font-size: 32px; -fx-font-weight: bold;" />
-            <Label text="Sign in to continue your fitness journey" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+        <VBox alignment="CENTER" spacing="25" styleClass="glass-card-heavy" style="-fx-pref-width: 450; -fx-padding: 50;">
+            <Label text="Welcome Back" styleClass="heading-2" />
+            <Label text="Sign in to continue your fitness journey" styleClass="subtitle" />
             
             <VBox spacing="20" style="-fx-pref-width: 350;">
                 <VBox spacing="8">
-                    <Label text="Email" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
-                    <TextField fx:id="emailField" promptText="Enter your email" 
-                               style="-fx-background-radius: 10; -fx-pref-height: 45; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    <Label text="Email" styleClass="input-label" />
+                    <TextField fx:id="emailField" promptText="Enter your email" styleClass="input-field" style="-fx-pref-width: 350;" />
                 </VBox>
                 <VBox spacing="8">
-                    <Label text="Password" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" />
-                    <PasswordField fx:id="passwordField" promptText="Enter your password" 
-                                    style="-fx-background-radius: 10; -fx-pref-height: 45; -fx-font-size: 14px; -fx-padding: 0 15;" />
+                    <Label text="Password" styleClass="input-label" />
+                    <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="input-field" style="-fx-pref-width: 350;" />
                 </VBox>
             </VBox>
             
             <VBox spacing="15" alignment="CENTER" style="-fx-pref-width: 350;">
-                <Button text="Login" onAction="#handleLogin" 
-                        style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-pref-width: 350; -fx-pref-height: 50; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);" />
-                <Button text="Create New Account" onAction="#handleShowRegister" 
-                        style="-fx-background-color: transparent; -fx-text-fill: #667eea; -fx-font-size: 14px; -fx-underline: true; -fx-cursor: hand; -fx-border-color: transparent;" />
+                <Button text="Login" onAction="#handleLogin" styleClass="btn-primary" style="-fx-pref-width: 350;" />
+                <Button text="Create New Account" onAction="#handleShowRegister" styleClass="btn-link" />
             </VBox>
         </VBox>
     </VBox>
 </AnchorPane>
-

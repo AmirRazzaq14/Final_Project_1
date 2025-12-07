@@ -16,8 +16,6 @@ public class ProfileViewController {
     @FXML private Label targetWeightLabel;
     @FXML private Label bodyFatLabel;
     @FXML private VBox injuriesContainer;
-    @FXML private HBox connectionWarningBox;
-    @FXML private Label connectionWarningLabel;
     
     private String currentUserEmail;
     private UserProfile currentProfile;
@@ -25,20 +23,6 @@ public class ProfileViewController {
     @FXML
     public void initialize() {
         currentUserEmail = LoginController.getCurrentUserEmail();
-        
-        // Check Firebase connection
-        if (!FirebaseConnectionManager.isConnected()) {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(true);
-                if (connectionWarningLabel != null) {
-                    connectionWarningLabel.setText("Firebase connection not available. Profile data loaded from local storage.");
-                }
-            }
-        } else {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(false);
-            }
-        }
         
         loadProfile();
     }

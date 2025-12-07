@@ -1,0 +1,483 @@
+/* ============================================
+   ShapeShift - Professional Glass Design System
+   ============================================ */
+
+/* Color Palette */
+.root {
+    /* Primary Gradient */
+    -fx-primary-start: #667eea;
+    -fx-primary-end: #764ba2;
+    
+    /* Glass Colors */
+    -fx-glass-light: rgba(255, 255, 255, 0.15);
+    -fx-glass-medium: rgba(255, 255, 255, 0.25);
+    -fx-glass-heavy: rgba(255, 255, 255, 0.95);
+    
+    /* Text Colors */
+    -fx-text-primary: #2c3e50;
+    -fx-text-secondary: #7f8c8d;
+    -fx-text-white: #ffffff;
+    -fx-text-accent: #667eea;
+    
+    /* Accent Colors */
+    -fx-accent-primary: #667eea;
+    -fx-accent-success: #27ae60;
+    -fx-accent-danger: #e74c3c;
+    -fx-accent-warning: #f39c12;
+    
+    /* Background */
+    -fx-background-gradient: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);
+}
+
+/* ============================================
+   Glass Card Components
+   ============================================ */
+
+.glass-card {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 25px;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 20, 0.3, 0, 5);
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-width: 1px;
+    -fx-border-radius: 25px;
+}
+
+.glass-card-heavy {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 25px;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0.3, 0, 3);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1px;
+    -fx-border-radius: 25px;
+}
+
+.glass-card-light {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 20px;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.2, 0, 3);
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn-primary {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 8, 0.4, 0, 2);
+    -fx-padding: 0 25px;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #5568d3;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.5), 12, 0.5, 0, 3);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #4a5bc0;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 5, 0.3, 0, 1);
+}
+
+.btn-secondary {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-text-fill: #667eea;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0.3, 0, 2);
+    -fx-padding: 0 25px;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.4, 0, 3);
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 5, 0.2, 0, 1);
+}
+
+.btn-glass {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0.3, 0, 2);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-padding: 0 25px;
+}
+
+.btn-glass:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #667eea;
+    -fx-font-size: 14px;
+    -fx-underline: true;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding: 5px;
+}
+
+.btn-link:hover {
+    -fx-text-fill: #5568d3;
+}
+
+.btn-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 45px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(231, 76, 60, 0.4), 8, 0.4, 0, 2);
+    -fx-padding: 0 20px;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #c0392b;
+}
+
+.btn-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 45px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.4), 8, 0.4, 0, 2);
+    -fx-padding: 0 20px;
+}
+
+.btn-success:hover {
+    -fx-background-color: #229954;
+}
+
+/* ============================================
+   Input Fields
+   ============================================ */
+
+.input-field {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 48px;
+    -fx-font-size: 14px;
+    -fx-padding: 0 18px;
+    -fx-border-color: rgba(102, 126, 234, 0.2);
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 12px;
+    -fx-text-fill: #2c3e50;
+}
+
+.input-field:focused {
+    -fx-border-color: #667eea;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.2), 8, 0.3, 0, 0);
+}
+
+.input-label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+.heading-1 {
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0);
+}
+
+.heading-2 {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.heading-3 {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.heading-4 {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.heading-white {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.subtitle-white {
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+}
+
+.body-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+.body-text-white {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(255, 255, 255, 0.95);
+}
+
+/* ============================================
+   Toggle Buttons
+   ============================================ */
+
+.toggle-button {
+    -fx-background-color: white;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 150px;
+    -fx-border-color: rgba(102, 126, 234, 0.3);
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-cursor: hand;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+    -fx-border-color: #667eea;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 8, 0.4, 0, 2);
+}
+
+.toggle-button:hover {
+    -fx-border-color: #667eea;
+}
+
+/* ============================================
+   Lists and ComboBoxes
+   ============================================ */
+
+.list-view, .combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(102, 126, 234, 0.2);
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 12px;
+    -fx-font-size: 14px;
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 12px 15px;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: rgba(102, 126, 234, 0.1);
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: rgba(102, 126, 234, 0.2);
+    -fx-text-fill: #667eea;
+}
+
+.combo-box .list-view {
+    -fx-background-color: white;
+}
+
+/* ============================================
+   ScrollPane
+   ============================================ */
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 5px;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 5px;
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   Sliders
+   ============================================ */
+
+.slider .track {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 5px;
+    -fx-pref-height: 6px;
+}
+
+.slider .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.3, 0, 1);
+}
+
+/* ============================================
+   Progress Bars
+   ============================================ */
+
+.progress-bar .track {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 10px;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #667eea;
+    -fx-background-radius: 10px;
+}
+
+/* ============================================
+   Cards and Containers
+   ============================================ */
+
+.card {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 20px;
+    -fx-padding: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0.3, 0, 3);
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+}
+
+.card-heavy {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 20px;
+    -fx-padding: 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 12, 0.3, 0, 2);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+
+.nav-button {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 12px;
+    -fx-text-fill: #667eea;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-pref-height: 45px;
+    -fx-padding: 0 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 6, 0.3, 0, 2);
+}
+
+.nav-button:hover {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 8, 0.4, 0, 3);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.spacing-small {
+    -fx-spacing: 10px;
+}
+
+.spacing-medium {
+    -fx-spacing: 20px;
+}
+
+.spacing-large {
+    -fx-spacing: 30px;
+}
+
+.padding-small {
+    -fx-padding: 15px;
+}
+
+.padding-medium {
+    -fx-padding: 25px;
+}
+
+.padding-large {
+    -fx-padding: 40px;
+}
+
+/* ============================================
+   Chart Styles (from existing chart-styles.css)
+   ============================================ */
+
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.chart-plot-background {
+    -fx-background-color: rgba(248, 249, 250, 0.5);
+}
+

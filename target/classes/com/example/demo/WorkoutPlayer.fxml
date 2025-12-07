@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
 <?import javafx.scene.image.ImageView?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.demo.WorkoutPlayerController"
-            prefWidth="1200" prefHeight="800" style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
-
-<VBox spacing="40" alignment="CENTER" AnchorPane.topAnchor="60" AnchorPane.bottomAnchor="120" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-    <!-- Exercise Title -->
-    <Label fx:id="exerciseName" style="-fx-text-fill: white; -fx-font-size: 42px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 0);" />
-
-    <!-- Exercise Image -->
-    <ImageView fx:id="exerciseImage" fitWidth="450" fitHeight="400" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 25, 0.7, 0, 5); -fx-background-radius: 20;" />
-
-    <!-- Timer / Reps -->
-    <Label fx:id="exerciseDetail" style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 24px; -fx-font-weight: normal;" />
-
-    <!-- Progress Bar -->
-    <ProgressBar fx:id="progressBar" prefWidth="600" progress="0" style="-fx-accent: #667eea; -fx-background-radius: 10; -fx-pref-height: 12;" />
-
-    <!-- Timer countdown -->
-    <Label fx:id="timerLabel" style="-fx-text-fill: #667eea; -fx-font-size: 72px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.5), 15, 0.7, 0, 0);" />
-</VBox>
-
-<!-- Bottom Buttons -->
-<HBox spacing="30" alignment="CENTER" AnchorPane.bottomAnchor="40" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-    <Button text="Previous" onAction="#goPrev" 
-            style="-fx-background-radius: 15; -fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 180; -fx-pref-height: 50; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.5, 0, 2); -fx-border-color: rgba(255,255,255,0.3); -fx-border-width: 2; -fx-border-radius: 15;" />
-    <Button text="Next Exercise" onAction="#goNext" 
-            style="-fx-background-radius: 15; -fx-background-color: #667eea; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-pref-width: 180; -fx-pref-height: 50; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.5), 10, 0.7, 0, 3);" />
-</HBox>
-
+            prefWidth="1200" prefHeight="800" 
+            stylesheets="@shapeshift-styles.css"
+            styleClass="anchor-pane"
+            style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <VBox spacing="40" alignment="CENTER" AnchorPane.topAnchor="60" AnchorPane.bottomAnchor="120" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <!-- Exercise Title -->
+        <Label fx:id="exerciseName" styleClass="heading-white" style="-fx-font-size: 42px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 0);" />
+        <!-- Exercise Image -->
+        <ImageView fx:id="exerciseImage" fitWidth="450" fitHeight="400" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 25, 0.7, 0, 5); -fx-background-radius: 20;" />
+        <!-- Timer / Reps -->
+        <Label fx:id="exerciseDetail" styleClass="body-text-white" style="-fx-font-size: 24px;" />
+        <!-- Progress Bar -->
+        <ProgressBar fx:id="progressBar" prefWidth="600" progress="0" styleClass="progress-bar" style="-fx-pref-height: 12;" />
+        <!-- Timer countdown -->
+        <Label fx:id="timerLabel" style="-fx-text-fill: #667eea; -fx-font-size: 72px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.5), 15, 0.7, 0, 0);" />
+    </VBox>
+    <!-- Bottom Buttons -->
+    <HBox spacing="30" alignment="CENTER" AnchorPane.bottomAnchor="40" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Button text="Previous" onAction="#goPrev" styleClass="btn-glass" style="-fx-pref-width: 180; -fx-pref-height: 50;" />
+        <Button text="Next Exercise" onAction="#goNext" styleClass="btn-primary" style="-fx-pref-width: 180; -fx-pref-height: 50;" />
+    </HBox>
 </AnchorPane>

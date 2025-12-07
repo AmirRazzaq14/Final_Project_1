@@ -14,8 +14,6 @@ public class MyWorkoutPlanController {
     @FXML private Label planTitleLabel;
     @FXML private VBox selectedWorkoutsContainer;
     @FXML private VBox loggedExercisesContainer;
-    @FXML private HBox connectionWarningBox;
-    @FXML private Label connectionWarningLabel;
     
     private String currentUserEmail;
     
@@ -25,20 +23,6 @@ public class MyWorkoutPlanController {
         currentUserEmail = SessionManager.getCurrentEmail();
         if (currentUserEmail == null) {
             currentUserEmail = LoginController.getCurrentUserEmail();
-        }
-        
-        // Check Firebase connection
-        if (!FirebaseConnectionManager.isConnected()) {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(true);
-                if (connectionWarningLabel != null) {
-                    connectionWarningLabel.setText("Firebase connection not available. Using local data storage.");
-                }
-            }
-        } else {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(false);
-            }
         }
         
         loadSelectedWorkouts();

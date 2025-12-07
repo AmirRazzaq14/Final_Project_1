@@ -26,8 +26,6 @@ public class ProgressDashboardController {
     @FXML private Label calorieSummaryLabel;
     @FXML private Label stepsSummaryLabel;
     @FXML private Label lastEntryLabel;
-    @FXML private HBox connectionWarningBox;
-    @FXML private Label connectionWarningLabel;
     @FXML private VBox emptyStateContainer;
     @FXML private HBox summaryCardsContainer;
     @FXML private HBox welcomeBannerContainer;
@@ -54,20 +52,6 @@ public class ProgressDashboardController {
     @FXML
     public void initialize() {
         currentUserEmail = SessionManager.getCurrentEmail();
-        
-        // Check Firebase connection
-        if (!FirebaseConnectionManager.isConnected()) {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(true);
-                if (connectionWarningLabel != null) {
-                    connectionWarningLabel.setText("Firebase connection not available. Using local data storage.");
-                }
-            }
-        } else {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(false);
-            }
-        }
         
         // Load and display data
         loadProgressData();

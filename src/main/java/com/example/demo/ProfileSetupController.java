@@ -2,7 +2,6 @@ package com.example.demo;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.event.ActionEvent;
 
 import java.util.ArrayList;
@@ -32,27 +31,11 @@ public class ProfileSetupController {
     @FXML private CheckBox injuryBack;
     @FXML private CheckBox injuryWrist;
     @FXML private CheckBox injuryAnkle;
-    @FXML private HBox connectionWarningBox;
-    @FXML private Label connectionWarningLabel;
     
     private String currentUserEmail;
     
     @FXML
     public void initialize() {
-        // Check Firebase connection
-        if (!FirebaseConnectionManager.isConnected()) {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(true);
-                if (connectionWarningLabel != null) {
-                    connectionWarningLabel.setText("Firebase connection not available. Profile will be saved locally.");
-                }
-            }
-        } else {
-            if (connectionWarningBox != null) {
-                connectionWarningBox.setVisible(false);
-            }
-        }
-        
         // Update days label when slider changes
         daysSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             int days = newVal.intValue();
@@ -178,9 +161,6 @@ public class ProfileSetupController {
         if (injuryAnkle.isSelected()) injuries.add("ankle");
         profile.setInjuries(injuries);
         
-        // Check Firebase connection
-        boolean usingLocal = !FirebaseConnectionManager.isConnected();  //add back (boolean usingLocal = !FirebaseConnectionManager.isConnected(); ) once done
-        
         // Save profile
         DataManager.saveProfile(profile);
         
@@ -189,10 +169,7 @@ public class ProfileSetupController {
         DataManager.saveWorkoutPlan(email, plan);
         
         // Show success and navigate to plan view
-        String message = usingLocal ? 
-            "Your personalized workout plan has been generated! (Saved locally - Firebase not connected)" : 
-            "Your personalized workout plan has been generated!";
-        showAlert(message);
+        showAlert("Your personalized workout plan has been generated!");
         
         // Navigate to My Workout Plan page to see the generated plan
         try {
