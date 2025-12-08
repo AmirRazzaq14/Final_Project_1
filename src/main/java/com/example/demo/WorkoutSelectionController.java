@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class WorkoutSelectionController {
+
     private static final Map<String, List<String>> MUSCLE_GROUP_WORKOUTS = WorkoutFilterDropdown.MUSCLE_GROUP_WORKOUTS;
 
     @FXML private ComboBox<String> muscleGroupComboBox;
@@ -37,7 +38,6 @@ public class WorkoutSelectionController {
         myWorkoutsListView.setItems(myWorkouts);
 
         workoutSearchField.textProperty().addListener((obs, oldVal, newVal) -> applySearchFilter(newVal));
-
 
         startWorkoutButton.setDisable(myWorkouts.isEmpty());
         myWorkouts.addListener((ListChangeListener<String>) c ->
@@ -93,11 +93,9 @@ public class WorkoutSelectionController {
         SceneSwitcher.switchScene(event, "/com/example/demo/workout_home.fxml", "Workout Home");
     }
 
-
     @FXML
     private void handleStartWorkout(javafx.event.ActionEvent event) {
         List<Exercise> exercises = myWorkouts.stream()
-                // TODO: Replace with mapping to appropriate Exercise detail/image for each real exercise if needed
                 .map(name -> new Exercise(name, "10x", "/images/default.jpg"))
                 .collect(Collectors.toList());
 
