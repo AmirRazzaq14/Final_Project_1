@@ -40,48 +40,37 @@ public class FirebaseConnectionManager {
      */
     private static void initializeFirebase() {
         try {
-            File serviceAccountFile = new File(SERVICE_ACCOUNT_KEY_PATH);
-            
-            if (!serviceAccountFile.exists()) {
-                System.out.println("Firebase service account key not found. Using local storage for authentication.");
-                System.out.println("To enable Firebase Auth, place 'firebase-service-account-key.json' in the project root.");
+            InputStream serviceAccount = FirebaseConnectionManager.class.getClassLoader()
+                    .getResourceAsStream("firebase-service-account-key.json");
+            if (serviceAccount == null) {
+                System.out.println("Firebase service account key not found in resources. Using local storage for authentication.");
                 isConnected = false;
                 return;
             }
-
-            FileInputStream serviceAccount = new FileInputStream(serviceAccountFile);
             GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
-            
+
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(credentials)
                     .build();
 
-            // Check if Firebase is already initialized
             try {
                 firebaseApp = FirebaseApp.getInstance();
             } catch (IllegalStateException e) {
-                // Not initialized, create new instance
                 firebaseApp = FirebaseApp.initializeApp(options);
             }
-            
+
             firebaseAuth = FirebaseAuth.getInstance(firebaseApp);
             isFirebaseInitialized = true;
             isConnected = true;
-            
             System.out.println("Firebase Authentication initialized successfully.");
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("Firebase service account key file not found. Using local storage for authentication.");
-            isConnected = false;
-        } catch (IOException e) {
-            System.err.println("Error reading Firebase service account key: " + e.getMessage());
-            isConnected = false;
+
         } catch (Exception e) {
             System.err.println("Error initializing Firebase: " + e.getMessage());
             e.printStackTrace();
             isConnected = false;
         }
     }
+
 
     /**
      * Check if Firebase is connected and ready
