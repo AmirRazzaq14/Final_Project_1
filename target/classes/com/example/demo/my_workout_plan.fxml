@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
-<AnchorPane fx:controller="com.example.demo.MyWorkoutPlanController"
-            xmlns:fx="http://javafx.com/fxml" prefWidth="1200" prefHeight="800"
-            stylesheets="@shapeshift-styles.css"
-            styleClass="anchor-pane">
-    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-pane" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800" prefWidth="1200" styleClass="anchor-pane" stylesheets="@shapeshift-styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.demo.MyWorkoutPlanController">
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="scroll-pane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <VBox spacing="25" style="-fx-padding: 30; -fx-background-color: transparent;">
             <!-- Header -->
             <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 20;">
-                <Label fx:id="planTitleLabel" text="My Workout Plan" styleClass="heading-white" style="-fx-font-size: 42px;" />
+                <Label fx:id="planTitleLabel" style="-fx-font-size: 42px;" styleClass="heading-white" text="My Workout Plan" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="Return to Home" onAction="#handleBack" styleClass="nav-button" style="-fx-min-width: 180; -fx-pref-width: 180;" />
+                <Button onAction="#handleBack" style="-fx-min-width: 140; -fx-pref-width: 40; -fx-font-size: 13px;" styleClass="nav-button" text="Return to Home" />
             </HBox>
 
             <!-- Selected Workouts -->
-            <VBox spacing="15" styleClass="glass-card-heavy" style="-fx-padding: 25;">
-                <Label text="Selected Workouts" styleClass="heading-3" />
-                <ScrollPane fitToWidth="true" styleClass="scroll-pane" style="-fx-pref-height: 550; -fx-min-height: 550;">
+            <VBox spacing="15" style="-fx-padding: 25;" styleClass="glass-card-heavy">
+                <Label styleClass="heading-3" text="Selected Workouts" />
+                <ScrollPane fitToWidth="true" style="-fx-pref-height: 550; -fx-min-height: 550;" styleClass="scroll-pane">
                     <VBox fx:id="selectedWorkoutsContainer" spacing="15" />
                 </ScrollPane>
             </VBox>
 
             <!-- Logged Exercises -->
-            <VBox spacing="15" styleClass="glass-card-heavy" style="-fx-padding: 25;">
-                <Label text="📝 Logged Exercises" styleClass="heading-3" />
-                <ScrollPane fitToWidth="true" styleClass="scroll-pane" style="-fx-pref-height: 550; -fx-min-height: 550;">
+            <VBox spacing="15" style="-fx-padding: 25;" styleClass="glass-card-heavy">
+                <Label styleClass="heading-3" text="📝 Logged Exercises" />
+                <ScrollPane fitToWidth="true" style="-fx-pref-height: 550; -fx-min-height: 550;" styleClass="scroll-pane">
                     <VBox fx:id="loggedExercisesContainer" spacing="10" />
                 </ScrollPane>
             </VBox>
 
             <!-- Quick Actions -->
-            <VBox spacing="10" styleClass="glass-card-heavy" style="-fx-padding: 20; -fx-pref-width: 280;" alignment="CENTER">
-                <Label text="⚡ Quick Actions" styleClass="heading-4" />
-                <Button text="📝 Log Workout" onAction="#handleLogWorkout" styleClass="btn-primary" 
-                        style="-fx-pref-width: 240; -fx-pref-height: 40; -fx-font-size: 14px; -fx-background-color: #3498db;" />
-                <Button text="📈 View Progress Dashboard" onAction="#handleViewProgress" styleClass="btn-primary" 
-                        style="-fx-pref-width: 240; -fx-pref-height: 40; -fx-font-size: 14px;" />
+            <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20; -fx-pref-width: 280;" styleClass="glass-card-heavy">
+                <Label styleClass="heading-4" text="⚡ Quick Actions" />
+                <Button onAction="#handleLogWorkout" style="-fx-pref-width: 245; -fx-pref-height: 45; -fx-font-size: 14px; -fx-background-color: -fx-font-family: Arial Black;#3498db;" styleClass="btn-primary" text="📝 Log Workout" />
+                <Button onAction="#handleViewProgress" style="-fx-pref-width: 250; -fx-pref-height: 50; -fx-font-size: 14px; -fx-font-family: Arial Black;" styleClass="btn-primary" text="📈 View Progress Dashboard" />
             </VBox>
         </VBox>
     </ScrollPane>

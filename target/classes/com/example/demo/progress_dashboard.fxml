@@ -1,117 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
-<AnchorPane fx:controller="com.example.demo.ProgressDashboardController"
-            xmlns:fx="http://javafx.com/fxml" prefWidth="1200" prefHeight="800"
-            stylesheets="@shapeshift-styles.css,@chart-styles.css"
-            styleClass="anchor-pane">
-    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-pane" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800" prefWidth="1200" styleClass="anchor-pane" stylesheets="@shapeshift-styles.css,@chart-styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.demo.ProgressDashboardController">
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="scroll-pane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <VBox spacing="0" style="-fx-padding: 0 20 10 20; -fx-background-color: transparent;">
             <!-- Header -->
-            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 0;">
-                <Label text="📊 Progress Dashboard" styleClass="heading-white" style="-fx-font-size: 36px;" />
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 5;">
+                <Label style="-fx-font-size: 40px; -fx-font-family: baskerville;" styleClass="heading-white" text="📊 Progress Dashboard" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="➕ Add Progress Entry" onAction="#handleAddProgress" styleClass="nav-button" style="-fx-min-width: 200; -fx-pref-width: 200;" />
-                <Button text="🏠 Return to Home" onAction="#handleBack" styleClass="nav-button" style="-fx-min-width: 180; -fx-pref-width: 180;" />
+                <Button onAction="#handleAddProgress" prefWidth="226.0" style="-fx-min-width: 200; -fx-pref-width: 226; -fx-font-family: arial black;" styleClass="nav-button" text="➕ Add Progress Entry" />
+                <Button onAction="#handleBack" style="-fx-min-width: 180; -fx-pref-width: 180; -fx-font-family: arial black;" styleClass="nav-button" text="🏠 Return to Home" />
             </HBox>
 
             <!-- Welcome Banner -->
-            <HBox fx:id="welcomeBannerContainer" alignment="CENTER" spacing="30" styleClass="glass-card" style="-fx-padding: 24 50; -fx-min-height: 100; -fx-pref-height: 100; -fx-margin: 3 0 0 0;" visible="false">
-                <Label fx:id="welcomeMessageLabel" text="💪 Keep pushing forward! Your progress is inspiring." 
-                       styleClass="body-text-white" style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+            <HBox fx:id="welcomeBannerContainer" alignment="CENTER" spacing="30" style="-fx-padding: 24 50; -fx-min-height: 100; -fx-pref-height: 100; -fx-margin: 3 0 0 0;" styleClass="glass-card" visible="false">
+                <Label fx:id="welcomeMessageLabel" style="-fx-font-size: 28px; -fx-font-weight: bold;" styleClass="body-text-white" text="💪 Keep pushing forward! Your progress is inspiring." />
                 <Region HBox.hgrow="ALWAYS" />
-                <Label fx:id="totalEntriesLabel" text="📊 0 entries logged" 
-                       styleClass="body-text-white" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                <Label fx:id="totalEntriesLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;" styleClass="body-text-white" text="📊 0 entries logged" />
             </HBox>
 
             <!-- Progress Insights Card -->
-            <VBox fx:id="progressInsightsContainer" spacing="20" styleClass="glass-card" style="-fx-padding: 30 40; -fx-margin: 3 0 0 0; -fx-pref-height: 200; -fx-min-height: 200; -fx-max-height: 200;" visible="false">
-                <Label text="📊 Progress Insights" styleClass="body-text-white" style="-fx-font-size: 28px; -fx-font-weight: bold;" />
-                <HBox spacing="30" alignment="CENTER_LEFT">
+            <VBox fx:id="progressInsightsContainer" spacing="20" style="-fx-padding: 30 40; -fx-margin: 3 0 0 0; -fx-pref-height: 200; -fx-min-height: 200; -fx-max-height: 200;" styleClass="glass-card" visible="false">
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" styleClass="body-text-white" text="📊 Progress Insights" />
+                <HBox alignment="CENTER_LEFT" spacing="30">
                     <VBox spacing="10" style="-fx-pref-width: 350;">
-                        <Label fx:id="streakLabel" text="🔥 Current Streak: --" styleClass="body-text-white" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                        <Label fx:id="weeklyProgressLabel" text="📈 This Week's Progress: --" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+                        <Label fx:id="streakLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;" styleClass="body-text-white" text="🔥 Current Streak: --" />
+                        <Label fx:id="weeklyProgressLabel" style="-fx-font-size: 18px;" styleClass="body-text-white" text="📈 This Week's Progress: --" />
                     </VBox>
                     <VBox spacing="10" style="-fx-pref-width: 350;">
-                        <Label fx:id="averagePerWeekLabel" text="📊 Avg/Week: --" styleClass="body-text-white" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                        <Label fx:id="totalEntriesCountLabel" text="Total: -- entries" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+                        <Label fx:id="averagePerWeekLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;" styleClass="body-text-white" text="📊 Avg/Week: --" />
+                        <Label fx:id="totalEntriesCountLabel" style="-fx-font-size: 18px;" styleClass="body-text-white" text="Total: -- entries" />
                     </VBox>
                     <VBox spacing="10" HBox.hgrow="ALWAYS">
-                        <Label fx:id="overallTrendLabel" text="📊 Overall Trend: --" styleClass="body-text-white" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                        <Label fx:id="consistencyLabel" text="⭐ Consistency Score: --" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+                        <Label fx:id="overallTrendLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;" styleClass="body-text-white" text="📊 Overall Trend: --" />
+                        <Label fx:id="consistencyLabel" style="-fx-font-size: 18px;" styleClass="body-text-white" text="⭐ Consistency Score: --" />
                     </VBox>
                 </HBox>
             </VBox>
 
             <!-- Progress Highlights -->
-            <HBox fx:id="highlightsContainer" spacing="15" alignment="CENTER" style="-fx-padding: 3 0 0 0;" visible="false">
-                <VBox spacing="8" alignment="CENTER" styleClass="glass-card" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;">
-                    <Label fx:id="daysTrackingLabel" text="📅 0 days" styleClass="body-text-white" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
-                    <Label text="Tracking Progress" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+            <HBox fx:id="highlightsContainer" alignment="CENTER" spacing="15" style="-fx-padding: 3 0 0 0;" visible="false">
+                <VBox alignment="CENTER" spacing="8" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;" styleClass="glass-card">
+                    <Label fx:id="daysTrackingLabel" style="-fx-font-size: 36px; -fx-font-weight: bold;" styleClass="body-text-white" text="📅 0 days" />
+                    <Label style="-fx-font-size: 18px;" styleClass="body-text-white" text="Tracking Progress" />
                 </VBox>
-                <VBox spacing="8" alignment="CENTER" styleClass="glass-card" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;">
-                    <Label fx:id="totalWeightChangeLabel" text="⚖️ --" styleClass="body-text-white" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
-                    <Label text="Total Change" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+                <VBox alignment="CENTER" spacing="8" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;" styleClass="glass-card">
+                    <Label fx:id="totalWeightChangeLabel" style="-fx-font-size: 36px; -fx-font-weight: bold;" styleClass="body-text-white" text="⚖️ --" />
+                    <Label style="-fx-font-size: 18px;" styleClass="body-text-white" text="Total Change" />
                 </VBox>
-                <VBox spacing="8" alignment="CENTER" styleClass="glass-card" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;">
-                    <Label fx:id="bestCalorieDayLabel" text="🔥 --" styleClass="body-text-white" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
-                    <Label text="Best Calorie Day" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+                <VBox alignment="CENTER" spacing="8" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;" styleClass="glass-card">
+                    <Label fx:id="bestCalorieDayLabel" style="-fx-font-size: 36px; -fx-font-weight: bold;" styleClass="body-text-white" text="🔥 --" />
+                    <Label style="-fx-font-size: 18px;" styleClass="body-text-white" text="Best Calorie Day" />
                 </VBox>
-                <VBox spacing="8" alignment="CENTER" styleClass="glass-card" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;">
-                    <Label fx:id="highestStepsLabel" text="👣 --" styleClass="body-text-white" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
-                    <Label text="Highest Steps" styleClass="body-text-white" style="-fx-font-size: 18px;" />
+                <VBox alignment="CENTER" spacing="8" style="-fx-padding: 24 36; -fx-pref-width: 220; -fx-min-height: 180;" styleClass="glass-card">
+                    <Label fx:id="highestStepsLabel" style="-fx-font-size: 36px; -fx-font-weight: bold;" styleClass="body-text-white" text="👣 --" />
+                    <Label style="-fx-font-size: 18px;" styleClass="body-text-white" text="Highest Steps" />
                 </VBox>
             </HBox>
 
             <!-- Empty State -->
             <VBox fx:id="emptyStateContainer" alignment="CENTER" spacing="20" style="-fx-padding: 60;" visible="false">
-                <Label text="📈 No Progress Data Yet" styleClass="heading-white" style="-fx-font-size: 32px;" />
-                <Label text="Start tracking your fitness journey by adding your first progress entry!" 
-                       styleClass="body-text-white" style="-fx-font-size: 18px; -fx-alignment: center;" />
-                <Button text="➕ Add Your First Entry" onAction="#handleAddProgress" styleClass="btn-secondary" 
-                        style="-fx-font-size: 18px; -fx-pref-width: 250; -fx-pref-height: 50;" />
+                <Label style="-fx-font-size: 32px;" styleClass="heading-white" text="📈 No Progress Data Yet" />
+                <Label style="-fx-font-size: 18px; -fx-alignment: center;" styleClass="body-text-white" text="Start tracking your fitness journey by adding your first progress entry!" />
+                <Button onAction="#handleAddProgress" style="-fx-font-size: 18px; -fx-pref-width: 250; -fx-pref-height: 50;" styleClass="btn-secondary" text="➕ Add Your First Entry" />
             </VBox>
 
             <!-- Summary Cards -->
-            <HBox fx:id="summaryCardsContainer" spacing="12" alignment="CENTER" style="-fx-padding: 0;" visible="false">
-                <VBox spacing="8" styleClass="glass-card-heavy" style="-fx-padding: 25 30; -fx-pref-width: 240; -fx-min-height: 180;">
-                    <Label text="⚖️ Current Weight" styleClass="subtitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                    <Label fx:id="latestWeightLabel" text="--" styleClass="heading-2" style="-fx-font-size: 42px;" />
-                    <Label fx:id="weightChangeLabel" text="" style="-fx-text-fill: #27ae60; -fx-font-size: 16px;" />
+            <HBox fx:id="summaryCardsContainer" alignment="CENTER" spacing="12" style="-fx-padding: 0;" visible="false">
+                <VBox spacing="8" style="-fx-padding: 25 30; -fx-pref-width: 240; -fx-min-height: 180;" styleClass="glass-card-heavy">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" styleClass="subtitle" text="⚖️ Current Weight" />
+                    <Label fx:id="latestWeightLabel" style="-fx-font-size: 42px;" styleClass="heading-2" text="--" />
+                    <Label fx:id="weightChangeLabel" style="-fx-text-fill: #27ae60; -fx-font-size: 16px;" text="" />
                 </VBox>
-                <VBox spacing="8" styleClass="glass-card-heavy" style="-fx-padding: 25 30; -fx-pref-width: 260; -fx-min-height: 180;">
-                    <Label text="📉 Body Fat %" styleClass="subtitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                    <Label fx:id="latestBodyFatLabel" text="--" styleClass="heading-2" style="-fx-font-size: 42px;" />
-                    <Label fx:id="bodyFatChangeLabel" text="tracking over time" style="-fx-text-fill: #9b59b6; -fx-font-size: 16px;" />
+                <VBox spacing="8" style="-fx-padding: 25 30; -fx-pref-width: 260; -fx-min-height: 180;" styleClass="glass-card-heavy">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" styleClass="subtitle" text="📉 Body Fat %" />
+                    <Label fx:id="latestBodyFatLabel" style="-fx-font-size: 42px;" styleClass="heading-2" text="--" />
+                    <Label fx:id="bodyFatChangeLabel" style="-fx-text-fill: #9b59b6; -fx-font-size: 16px;" text="tracking over time" />
                 </VBox>
-                <VBox spacing="8" styleClass="glass-card-heavy" style="-fx-padding: 25 30; -fx-pref-width: 260; -fx-min-height: 180;">
-                    <Label text="🔥 Calorie Adherence" styleClass="subtitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                    <Label fx:id="calorieSummaryLabel" text="--" styleClass="heading-2" style="-fx-font-size: 42px;" />
-                    <Label text="avg of logged days" styleClass="subtitle" style="-fx-font-size: 16px;" />
+                <VBox spacing="8" style="-fx-padding: 25 30; -fx-pref-width: 260; -fx-min-height: 180;" styleClass="glass-card-heavy">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" styleClass="subtitle" text="🔥 Calorie Adherence" />
+                    <Label fx:id="calorieSummaryLabel" style="-fx-font-size: 42px;" styleClass="heading-2" text="--" />
+                    <Label style="-fx-font-size: 16px;" styleClass="subtitle" text="avg of logged days" />
                 </VBox>
-                <VBox spacing="8" styleClass="glass-card-heavy" style="-fx-padding: 25 30; -fx-pref-width: 240; -fx-min-height: 180;">
-                    <Label text="👣 Daily Steps" styleClass="subtitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                    <Label fx:id="stepsSummaryLabel" text="--" styleClass="heading-2" style="-fx-font-size: 42px;" />
-                    <Label text="avg per entry" styleClass="subtitle" style="-fx-font-size: 16px;" />
+                <VBox spacing="8" style="-fx-padding: 25 30; -fx-pref-width: 240; -fx-min-height: 180;" styleClass="glass-card-heavy">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" styleClass="subtitle" text="👣 Daily Steps" />
+                    <Label fx:id="stepsSummaryLabel" style="-fx-font-size: 42px;" styleClass="heading-2" text="--" />
+                    <Label style="-fx-font-size: 16px;" styleClass="subtitle" text="avg per entry" />
                 </VBox>
-                <VBox spacing="8" styleClass="glass-card-heavy" style="-fx-padding: 25 30; -fx-pref-width: 240; -fx-min-height: 180;">
-                    <Label text="📅 Last Entry" styleClass="subtitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                    <Label fx:id="lastEntryLabel" text="No entries yet" wrapText="true" styleClass="heading-4" />
-                    <Label text="Keep logging!" styleClass="subtitle" style="-fx-font-size: 16px;" />
+                <VBox spacing="8" style="-fx-padding: 25 30; -fx-pref-width: 240; -fx-min-height: 180;" styleClass="glass-card-heavy">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" styleClass="subtitle" text="📅 Last Entry" />
+                    <Label fx:id="lastEntryLabel" styleClass="heading-4" text="No entries yet" wrapText="true" />
+                    <Label style="-fx-font-size: 16px;" styleClass="subtitle" text="Keep logging!" />
                 </VBox>
             </HBox>
 
             <!-- Progress History Table -->
-            <VBox fx:id="historyContainer" spacing="10" styleClass="glass-card-heavy" style="-fx-padding: 20;" visible="false">
-                <Label text="📋 Progress History" styleClass="heading-3" />
-                <ScrollPane fitToWidth="true" styleClass="scroll-pane" style="-fx-pref-height: 550; -fx-min-height: 550;">
+            <VBox fx:id="historyContainer" spacing="10" style="-fx-padding: 20;" styleClass="glass-card-heavy" visible="false">
+                <Label styleClass="heading-3" text="📋 Progress History" />
+                <ScrollPane fitToWidth="true" style="-fx-pref-height: 550; -fx-min-height: 550;" styleClass="scroll-pane">
                     <VBox fx:id="progressHistoryContainer" spacing="10" />
                 </ScrollPane>
             </VBox>
 
             <!-- Progress Chart -->
-            <VBox fx:id="chartContainer" spacing="5" styleClass="glass-card-heavy" style="-fx-padding: 15;" visible="false">
+            <VBox fx:id="chartContainer" spacing="5" style="-fx-padding: 15;" styleClass="glass-card-heavy" visible="false">
             </VBox>
         </VBox>
     </ScrollPane>

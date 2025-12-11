@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.control.*?>
-<AnchorPane fx:controller="com.example.demo.HomeController"
-            xmlns:fx="http://javafx.com/fxml" prefWidth="1200" prefHeight="800"
-            stylesheets="@shapeshift-styles.css"
-            styleClass="anchor-pane">
-    <VBox alignment="CENTER" spacing="40" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="800" prefWidth="1200" style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HomeController">
+    <VBox alignment="CENTER" blendMode="LIGHTEN" spacing="40" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <VBox alignment="CENTER" spacing="20">
-            <Label text="Welcome Home!" styleClass="heading-1" />
-            <Label text="Ready to transform your body?" styleClass="subtitle-white" style="-fx-font-size: 20px;" />
+            <Label style="-fx-text-fill: white; -fx-font-size: 60px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2); -fx-font-family: Baskerville;" text="Welcome Home!">
+                <effect>
+                    <Lighting>
+                        <bumpInput>
+                            <Shadow />
+                        </bumpInput>
+                        <light>
+                            <Light.Distant />
+                        </light>
+                    </Lighting>
+                </effect>
+                <font>
+                    <Font name="Arial" size="19.0" />
+                </font></Label>
+            <Label style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 25; -fx-font-family: Baskerville;" text="Ready to transform your body?" />
         </VBox>
     </VBox>
 </AnchorPane>
