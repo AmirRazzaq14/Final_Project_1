@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="800" prefWidth="1200" styleClass="anchor-pane" stylesheets="@shapeshift-styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.demo.ProfileViewController">
-    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="scroll-pane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<AnchorPane fx:controller="com.example.demo.ProfileViewController"
+            xmlns:fx="http://javafx.com/fxml" prefWidth="1200" prefHeight="800"
+            stylesheets="@shapeshift-styles.css"
+            styleClass="anchor-pane">
+    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-pane" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <VBox spacing="25" style="-fx-padding: 30; -fx-background-color: transparent;">
             <!-- Header -->
             <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 20;">
-                <Label style="-fx-font-size: 46px; -fx-font-family: baskerville; -fx-font-weight: bold;" styleClass="heading-white" text="My Profile" />
+                <Label text="My Profile" styleClass="heading-white" style="-fx-font-size: 42px;" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#handleBack" style="-fx-min-width: 180; -fx-pref-width: 180; -fx-font-size: 15px;" styleClass="nav-button" text="Return to Home" />
+                <Button text="Return to Home" onAction="#handleBack" styleClass="nav-button" style="-fx-min-width: 180; -fx-pref-width: 180;" />
             </HBox>
             <!-- Profile Information Card -->
-            <VBox spacing="20" style="-fx-pref-width: 800; -fx-padding: 40;" styleClass="glass-card-heavy">
-                <Label style="-fx-font-family: baskerville; -fx-font-size: 30px; -fx-font-weight: bold;" styleClass="heading-3" text="Profile Information" />
-                <VBox spacing="15" style="-fx-pref-width: 720; -fx-background-color: #eeeeee;">
+            <VBox spacing="20" styleClass="glass-card-heavy" style="-fx-pref-width: 800; -fx-padding: 40;">
+                <Label text="Profile Information" styleClass="heading-3" />
+                <VBox spacing="15" style="-fx-pref-width: 720;">
                     <VBox spacing="5">
-                        <Label fx:id="emailLabel" style="-fx-font-size: 16px;" styleClass="body-text" />
+                        <Label fx:id="emailLabel" styleClass="body-text" style="-fx-font-size: 16px;" />
                     </VBox>
                     <VBox spacing="5">
-                        <Label fx:id="loginCountLabel" style="-fx-font-size: 16px;" styleClass="body-text" />
+                        <Label fx:id="loginCountLabel" styleClass="body-text" style="-fx-font-size: 16px;" />
                     </VBox>
                     <VBox spacing="5">
-                        <Label fx:id="currentWeightLabel" style="-fx-font-size: 16px;" styleClass="body-text" />
+                        <Label fx:id="currentWeightLabel" styleClass="body-text" style="-fx-font-size: 16px;" />
                     </VBox>
                     <VBox spacing="5">
-                        <Label fx:id="targetWeightLabel" style="-fx-font-size: 16px;" styleClass="body-text" />
+                        <Label fx:id="targetWeightLabel" styleClass="body-text" style="-fx-font-size: 16px;" />
                     </VBox>
                     <VBox spacing="5">
-                        <Label fx:id="bodyFatLabel" style="-fx-font-size: 16px;" styleClass="body-text" />
+                        <Label fx:id="bodyFatLabel" styleClass="body-text" style="-fx-font-size: 16px;" />
                     </VBox>
-                    <VBox fx:id="injuriesContainer" spacing="10">
+                    <VBox spacing="10" fx:id="injuriesContainer">
                         <!-- Injuries will be populated dynamically -->
                     </VBox>
                 </VBox>

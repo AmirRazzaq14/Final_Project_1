@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-
 public class HelloApplication extends Application {
 
     @Override
@@ -15,9 +13,10 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("ShapeShift - Your Personal Workout Companion");
         stage.setScene(scene);
+        stage.setMinWidth(1000);
+        stage.setMinHeight(700);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }

@@ -7,24 +7,24 @@
     /* Primary Gradient */
     -fx-primary-start: #667eea;
     -fx-primary-end: #764ba2;
-
+    
     /* Glass Colors */
     -fx-glass-light: rgba(255, 255, 255, 0.15);
     -fx-glass-medium: rgba(255, 255, 255, 0.25);
     -fx-glass-heavy: rgba(255, 255, 255, 0.95);
-
+    
     /* Text Colors */
     -fx-text-primary: #2c3e50;
     -fx-text-secondary: #7f8c8d;
     -fx-text-white: #ffffff;
     -fx-text-accent: #667eea;
-
+    
     /* Accent Colors */
     -fx-accent-primary: #667eea;
     -fx-accent-success: #27ae60;
     -fx-accent-danger: #e74c3c;
     -fx-accent-warning: #f39c12;
-
+    
     /* Background */
     -fx-background-gradient: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);
 }
@@ -231,24 +231,21 @@
 }
 
 .heading-3 {
-    -fx-font-size: 30px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-font-family: baskerville;
     -fx-text-fill: #2c3e50;
 }
 
 .heading-4 {
-    -fx-font-size: 26px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-font-family: Baskerville;
     -fx-text-fill: #2c3e50;
 }
 
 .heading-white {
-    -fx-font-size: 46px;
+    -fx-font-size: 42px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-font-family: baskerville;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
 }
 
@@ -277,11 +274,10 @@
    ============================================ */
 
 .toggle-button {
+    -fx-background-color: white;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-font-family: arial black;
-    -fx-text-fill: black;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.5, 0, 2);
-    -fx-background-color: #eeeeee;
     -fx-background-radius: 12px;
     -fx-pref-height: 50px;
     -fx-pref-width: 150px;
@@ -425,10 +421,9 @@
 .nav-button {
     -fx-background-color: rgba(255, 255, 255, 0.95);
     -fx-background-radius: 12px;
-    -fx-font-family: arial black;
     -fx-text-fill: #667eea;
     -fx-font-weight: bold;
-    -fx-font-size: 12px;
+    -fx-font-size: 15px;
     -fx-pref-height: 45px;
     -fx-padding: 0 20px;
     -fx-cursor: hand;
@@ -485,3 +480,4 @@
 .chart-plot-background {
     -fx-background-color: rgba(248, 249, 250, 0.5);
 }
+
