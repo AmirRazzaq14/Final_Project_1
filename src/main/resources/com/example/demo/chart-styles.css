@@ -11,12 +11,12 @@
 }
 
 .axis {
-    -fx-tick-label-fill: #000000;
+    -fx-tick-label-fill: #2c3e50;
     -fx-tick-length: 5;
 }
 
 .axis-label {
-    -fx-text-fill: #000000;
+    -fx-text-fill: #2c3e50;
     -fx-font-size: 12px;
 }
 
@@ -31,26 +31,26 @@
 /* Line Chart Series Colors */
 .default-color0.chart-series-line {
     -fx-stroke: #667eea;
-    -fx-stroke-width: 2.5px;
+    -fx-stroke-width: 3px;
 }
 
 .default-color0.chart-line-symbol {
     -fx-background-color: #667eea, white;
-    -fx-background-radius: 4px;
+    -fx-background-radius: 5px;
     -fx-background-insets: 0, 2;
-    -fx-padding: 4px;
+    -fx-padding: 5px;
 }
 
 .default-color1.chart-series-line {
     -fx-stroke: #764ba2;
-    -fx-stroke-width: 1.5px;
+    -fx-stroke-width: 3px;
 }
 
 .default-color1.chart-line-symbol {
     -fx-background-color: #764ba2, white;
-    -fx-background-radius: 3px;
+    -fx-background-radius: 5px;
     -fx-background-insets: 0, 2;
-    -fx-padding: 3px;
+    -fx-padding: 5px;
 }
 
 .default-color2.chart-series-line {
@@ -68,31 +68,18 @@
 /* Bar Chart Colors */
 .default-color0.chart-bar {
     -fx-bar-fill: #667eea;
-    -fx-background-color: #667eea;
 }
 
 .default-color1.chart-bar {
     -fx-bar-fill: #764ba2;
-    -fx-background-color: #764ba2;
 }
 
 .default-color2.chart-bar {
     -fx-bar-fill: #27ae60;
-    -fx-background-color: #27ae60;
 }
 
 .default-color3.chart-bar {
     -fx-bar-fill: #f39c12;
-    -fx-background-color: #f39c12;
-}
-
-/* Bar Chart Data Colors */
-.data0.chart-bar {
-    -fx-bar-fill: #667eea;
-}
-
-.data1.chart-bar {
-    -fx-bar-fill: #764ba2;
 }
 
 /* Chart Plot Background */
@@ -109,47 +96,6 @@
 .chart-vertical-grid-lines {
     -fx-stroke: #e0e0e0;
     -fx-stroke-width: 1px;
-}
-
-/* DatePicker Calendar Styling */
-.date-picker {
-    -fx-text-fill: black;
-}
-
-.date-picker .text-field {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .calendar-grid {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .calendar-grid .day-cell {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .calendar-grid .day-name-cell {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .month-year-pane {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .month-year-pane .label {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .spinner {
-    -fx-text-fill: black;
-}
-
-.date-picker-popup .spinner .label {
-    -fx-text-fill: black;
 }
 
 
